@@ -1,11 +1,12 @@
 const nodemailer= require ("nodemailer")
 
-function envioFormulario(req,res){
+
+async function envioFormulario (req,res){
     const {nombre, apellido, email, whatsapp, mensaje}= req.body;
         const emailmensaje ={
            to:"paacu21@hotmail.com",
            from: email,
-           asunto: "Mensaje desde Formulario de contacto",
+           subject: "Mensaje desde Formulario de contacto",
            html: `Contacto de ${nombre} ${apellido} Whatsapp:${whatsapp}: ${mensaje}`
     }
     var transport = nodemailer.createTransport({
@@ -16,9 +17,16 @@ function envioFormulario(req,res){
           pass: "2f83eb880751ec"
         }})
 
-    transport.sendMail(emailmensaje)
-    res.render("conectado")
-      }
+    const sendMailStatus = await transport.sendMail(emailmensaje);
+    if (sendMailStatus.rejected.length){
+      res.render("noAutorizado")
+    }else {
+      res.render("noAutorizado")
+    }
+    }
+
+    
+      
 
 module.exports=envioFormulario
     

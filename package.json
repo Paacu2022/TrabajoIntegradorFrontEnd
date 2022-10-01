@@ -1,0 +1,26 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Trabajo Integrador Full Stack UTN",
+  "main": "y",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paacu2022/TrabajoIntegradorFrontEnd.git"
+  },
+  "author": "Pablo Acuña",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Paacu2022/TrabajoIntegradorFrontEnd/issues"
+  },
+  "homepage": "https://github.com/Paacu2022/TrabajoIntegradorFrontEnd#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20"
+  }
+}

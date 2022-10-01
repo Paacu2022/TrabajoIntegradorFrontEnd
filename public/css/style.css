@@ -1,0 +1,30 @@
+body{
+  min-height: 100vh;
+}
+
+.contenedor{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+   
+}
+
+
+
+.gif{
+  width: 450px;
+}
+
+.titulo{
+  font-style: oblique;
+ font-size: 45px;
+ font-weight: 600;
+}
+
+.text{
+  font-size: 25px;
+ font-weight: 600;
+}

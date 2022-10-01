@@ -1,0 +1,93 @@
+<nav class=" h2 navbar-dark bg-dark navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><img src="imagenes/iconos/coding.png"  width="45" height="45"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container-fluid collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">ApiMarvel</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ejercicios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">JavaScrip</a></li>
+            <li><a class="dropdown-item" href="#">Interesantes</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Algo más aquí</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#contacto">Contactenos</a>
+        </li>
+      </ul>
+      <form class="d-flex justify-content-around container-fluid">
+        <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#registro">
+  Registrarse
+</button>
+<div class="vr"></div>
+<button type="button" class="btn btn-success col-4" data-bs-toggle="modal" data-bs-target="#login">
+ Ingresar 
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content col-8">
+      <div class="d-flex justify-content-around bg-primary">
+        <h5 class="h3" id="staticBackdropLabel">Ingrese email y contraseña</h5>
+      </div>
+      <div class="modal-body bg-dark">
+        {{>login}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="registro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="d-flex justify-content-around bg-warning">
+        <h5 class="modal-title h3 justify-content-around " id="staticBackdropLabel">Complete los campos del registro</h5>
+      </div>
+      <div class="modal-body bg-light">
+        {{>registracion}}
+      </div>
+      <div class="modal-footer justify-content-between bg-light">
+        <button type="button" class="btn btn-success">Registrarse</button>
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="contacto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content col-8">
+      <div class="d-flex justify-content-around">
+        <h5 class="h3" id="staticBackdropLabel">Contactenos</h5>
+      </div>
+      <div class="modal-body">
+        {{>contacto}}
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script src="script/focusModal.js"></script>
+

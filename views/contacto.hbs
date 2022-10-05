@@ -1,9 +1,10 @@
-<form action="/contacto" method="post">
+  <div class=" body d-flex justify-content-center bg-secondary">
+<form action="/contacto" method="post" class="col-7 mt-5 d-flex flex-column ">
   <div class="row">
   <div class="col-6">
 <div class="input-group mb-3">
   <img src="imagenes/iconos/nombre.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" id="nombreContacto" name="nombre">
+  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" id="nombreContacto" name="nombre" autofocus>
 </div></div>
 <div class="col-6">
 <div class="input-group mb-3">
@@ -35,14 +36,27 @@
 </div>
 </div>
 </div>
+<div class="row">
+  <div class="col-12 d-flex justify-content-center ">
+    <span class="bg-warning col-10 h3 text-center"><strong>{{mensaje}}</strong></span>
+</div>
+  </div>
+
 
 <div class="row">
-  <div class="col-6 d-flex justify-content-center">
+  <div class="col-4 d-flex justify-content-center">
         <button class="btn btn-success"  id="btnEnviar" type="submit">Enviar Consulta</button>
   </div>
-         <div class="col-6 d-flex justify-content-center">
-        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+  <div class="col-4 d-flex justify-content-center">
+        <a class="btn btn-info" href="/" role="button">Regresar a Home</a>
       </div>
-</div>
 
+         <div class="col-4 d-flex justify-content-center">
+        <a class="btn btn-danger" href="contacto" role="button">Cancelar</a>
+      </div>
+
+</div>
 </form>
+  </div>
+
+{{>footer}}

@@ -1,10 +1,10 @@
 const express=require ("express")
 const router= express.Router()
-const envioFormulario= require ("../controladores/controladores")
+const users= require ("../controladores/controladores")
 
 
-
-router.post("/contacto", envioFormulario)
+router.get("/contacto", users.formulario)
+router.post("/contacto", users.envioFormulario)
 
 
 

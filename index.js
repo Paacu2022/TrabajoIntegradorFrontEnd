@@ -2,7 +2,7 @@ const express = require ("express")
 const app= express();
 const PORT=3000
 const hbs= require("express-handlebars")
-const router= require ("./rutas/rutas.js")
+const rutas=require("./rutas/rutas")
 
 
 
@@ -24,7 +24,7 @@ app.get("/", (req, res)=>{
     res.render("home")
 })
 
-app.post("/contacto", router)
+app.use("/", rutas)
 
 app.get("*", (req, res)=>{
     res.render("noAutorizado")

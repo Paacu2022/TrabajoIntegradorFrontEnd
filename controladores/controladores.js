@@ -1,4 +1,11 @@
-const nodemailer= require ("nodemailer")
+const transport= require("../configuraciones/nodemailer")
+
+
+function formulario (req,res) {
+  res.render("contacto")
+  
+}
+
 
 
 async function envioFormulario (req,res){
@@ -9,26 +16,22 @@ async function envioFormulario (req,res){
            subject: "Mensaje desde Formulario de contacto",
            html: `Contacto de ${nombre} ${apellido} Whatsapp:${whatsapp}: ${mensaje}`
     }
-    var transport = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
-        auth: {
-          user: "e5112d31cc78cd",
-          pass: "2f83eb880751ec"
-        }})
+    
 
     const sendMailStatus = await transport.sendMail(emailmensaje);
+    let confirmacion=""
     if (sendMailStatus.rejected.length){
-      res.render("noAutorizado")
+      confirmacion= "Ocurrio un error y el formulario no se pudo enviar"
     }else {
-      res.render("noAutorizado")
+      confirmacion="El formulario se envio y se recibio con Éxito"
     }
+    res.render("contacto",{mensaje: confirmacion})
     }
 
     
       
 
-module.exports=envioFormulario
+module.exports={envioFormulario, formulario}
     
 
 

@@ -15,7 +15,7 @@ app.use(express.urlencoded())
 
 app.use(express.static("public"))
 
-app.engine (".hbs", hbs.engine ({ extname: "hbs"}))
+app.engine (".hbs", hbs.engine ({ extname: "hbs" }))
 app.set("view engine", "hbs")
 app.set ("views", "./views")
 

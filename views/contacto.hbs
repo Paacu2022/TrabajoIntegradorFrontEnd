@@ -1,15 +1,32 @@
-  <div class=" body d-flex justify-content-center bg-secondary">
-<form action="/contacto" method="post" class="col-7 mt-5 d-flex flex-column ">
+<div class=" body d-flex justify-content-center bg-success p-2 text-dark bg-opacity-25">
+<form action="/contacto" method="post" class="col-7 mt-5 d-flex flex-column" id="formularioContacto">
+  {{#if arrayErrors}}
+<div>
+<span class="badge bg-danger opacity-75 col-12 fs-4">Corrija los érrores señalados (*) y envie nuevamente el formulario</span>
+</div>
+{{/if}}
+  
+
   <div class="row">
   <div class="col-6">
 <div class="input-group mb-3">
   <img src="imagenes/iconos/nombre.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" id="nombreContacto" name="nombre" autofocus>
+  <input type="text" class="form-control col-6" placeholder="Nombre" aria-label="Nombre" id="nombreContacto" name="nombre" autofocus value="{{datosFormulario.nombre}}">
+  
+  <span class="badge input-group text-uppercase fs-6 text-danger">
+ 
+  </span>
+
 </div></div>
 <div class="col-6">
 <div class="input-group mb-3">
    <img src="imagenes/iconos/apellido.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Apellido" aria-label="apellido" id="apellidocontacto" name="apellido">
+  <input type="text" class="form-control" placeholder="Apellido" aria-label="apellido" id="apellidocontacto" name="apellido" value="{{datosFormulario.apellido}}">
+{{#each arrayErrors}}
+<span class="badge input-group text-uppercase fs-6 text-danger">
+ {{param}} {{msg}}
+</span>
+{{/each}}
 </div>
   </div>
   </div>
@@ -18,12 +35,22 @@
   <div class="col-6">
 <div class="input-group mb-3">
   <img src="imagenes/iconos/email.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Email" aria-label="email" id="emailcontacto" name="email">
+  <input type="text" class="form-control" placeholder="Email" aria-label="email" id="emailcontacto" name="email" value="{{datosFormulario.email}}">
+{{#each arrayErrors}}
+<span class="badge input-group text-uppercase fs-6 text-danger">
+  {{param}} {{msg}}
+</span>
+{{/each}}
 </div></div>
 <div class="col-6">
 <div class="input-group mb-3">
    <img src="imagenes/iconos/whatsapp.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Numero whatsapp" aria-label="whatsapp" id="whatsappContacto" name="whatsapp">
+  <input type="text" class="form-control" placeholder="Numero whatsapp" aria-label="whatsapp" id="whatsappContacto" name="whatsapp" value="{{datosFormulario.whatsapp}}">
+{{#each arrayErrors}}
+<span class="badge input-group text-uppercase fs-6 text-danger">
+  {{param}} {{msg}}
+</span>
+{{/each}}
 </div>
   </div>
   </div>

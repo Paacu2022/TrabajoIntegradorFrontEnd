@@ -9,48 +9,51 @@
 
   <div class="row">
   <div class="col-6">
-<div class="input-group mb-3">
+  <div class="input-group mb-3">
   <img src="imagenes/iconos/nombre.png"  width="45" height="45">
   <input type="text" class="form-control col-6" placeholder="Nombre" aria-label="Nombre" id="nombreContacto" name="nombre" autofocus value="{{datosFormulario.nombre}}">
-  
   <span class="badge input-group text-uppercase fs-6 text-danger">
- 
-  </span>
-
+  {{#filtro arrayErrors "nombre"}} 
+ {{this}}
+</span>  
+{{/filtro}}
 </div></div>
+
 <div class="col-6">
 <div class="input-group mb-3">
    <img src="imagenes/iconos/apellido.png"  width="45" height="45">
   <input type="text" class="form-control" placeholder="Apellido" aria-label="apellido" id="apellidocontacto" name="apellido" value="{{datosFormulario.apellido}}">
-{{#each arrayErrors}}
 <span class="badge input-group text-uppercase fs-6 text-danger">
- {{param}} {{msg}}
+{{#filtro arrayErrors "apellido"}}
+
+ {{this}}
 </span>
-{{/each}}
+{{/filtro}}
 </div>
   </div>
   </div>
+  
 
   <div class="row">
   <div class="col-6">
 <div class="input-group mb-3">
   <img src="imagenes/iconos/email.png"  width="45" height="45">
   <input type="text" class="form-control" placeholder="Email" aria-label="email" id="emailcontacto" name="email" value="{{datosFormulario.email}}">
-{{#each arrayErrors}}
 <span class="badge input-group text-uppercase fs-6 text-danger">
-  {{param}} {{msg}}
+{{#filtro arrayErrors "email"}}
+  {{this}}
 </span>
-{{/each}}
+{{/filtro}}
 </div></div>
+
 <div class="col-6">
 <div class="input-group mb-3">
    <img src="imagenes/iconos/whatsapp.png"  width="45" height="45">
   <input type="text" class="form-control" placeholder="Numero whatsapp" aria-label="whatsapp" id="whatsappContacto" name="whatsapp" value="{{datosFormulario.whatsapp}}">
-{{#each arrayErrors}}
 <span class="badge input-group text-uppercase fs-6 text-danger">
-  {{param}} {{msg}}
+{{#filtro arrayErrors "whatsapp"}}  {{this}} 
 </span>
-{{/each}}
+{{/filtro}}
 </div>
   </div>
   </div>
@@ -59,7 +62,7 @@
   <div class="col-12">
 <div class="input-group mb-3">
   <img src="imagenes/iconos/text.png"  width="45" height="45">
-  <textarea class="form-control" aria-label="With textarea"style="height: 200px" name="mensaje">Puedes Ingresar tu consulta aqui</textarea>
+  <textarea class="form-control" aria-label="With textarea"style="height: 200px" name="mensaje" >Puedes Ingresar tu consulta aqui</textarea>
 </div>
 </div>
 </div>
@@ -85,5 +88,6 @@
 </div>
 </form>
   </div>
+  
 
 {{>footer}}

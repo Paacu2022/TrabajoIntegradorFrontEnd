@@ -2,21 +2,21 @@ const {body}=require ("express-validator")
 
 const ReglasDeValidacion=[
     body('nombre')
-    .notEmpty().withMessage(":Debe ingresar su nombre")
-    .isLength({ min:2, max:30}).withMessage(':minimamente de 3 letras')
+    .notEmpty().withMessage("Nombre ")
+    .isLength({ min:2, max:30}).withMessage(" obligatorio, minimo 3 caracteres")
     .trim(" "),
     body('apellido')
-    .notEmpty().withMessage(":Debe ingresar su apellido")
-    .isLength({ min:2, max:30}).withMessage('*minimamente de 3 letras')
+    .notEmpty().withMessage("Apellido ")
+    .isLength({ min:2, max:30}).withMessage(' obligatorio, minimo 3 caracteres')
     .trim(" "),
     body('email')
-    .notEmpty().withMessage(":Debe ingresar su email")
+    .notEmpty().withMessage("Email ")
     .trim(" ")
-    .isEmail().withMessage(":Debe ingresar email valido"),
+    .isEmail().withMessage(" obligatorio. Formato invalido"),
     body('whatsapp')
-    .notEmpty().withMessage(":Debe ingresar su whatsapp")
+    .notEmpty().withMessage("Whatsapp obligatorio ")
     .trim(" ")
-    .isNumeric().withMessage(":Solo valores númericos")
+    .isNumeric().withMessage(" solo números")
 
 
 

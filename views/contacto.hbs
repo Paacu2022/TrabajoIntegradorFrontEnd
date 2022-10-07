@@ -1,3 +1,4 @@
+
 <div class=" body d-flex justify-content-center bg-success p-2 text-dark bg-opacity-25">
 <form action="/contacto" method="post" class="col-7 mt-5 d-flex flex-column" id="formularioContacto">
   {{#if arrayErrors}}
@@ -88,6 +89,29 @@
 </div>
 </form>
   </div>
-  
+ {{! <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-{{>footer}}
+<script>
+Swal.fire({
+  title: '<strong>HTML <u>example</u></strong>',
+  icon: 'info',
+  html:
+    'You can use <b>bold text</b>, ' +
+    '<a href="//sweetalert2.github.io">links</a> ' +
+    'and other HTML tags',
+  showCloseButton: true,
+  showCancelButton: true,
+  focusConfirm: false,
+  confirmButtonText:
+    '<i class="fa fa-thumbs-up">Confirmar</i> Great!',
+  confirmButtonAriaLabel: 'Thumbs up, great!',
+  cancelButtonText:
+    '<i class="fa fa-thumbs-down">Cancelar</i>',
+  cancelButtonAriaLabel: 'Thumbs down'
+})
+
+</script>!}}
+
+
+
+

@@ -1,4 +1,5 @@
-const {body}=require ("express-validator")
+const {body, validationResult}=require ("express-validator")
+
 
 const ReglasDeValidacion=[
     body('nombre')
@@ -16,9 +17,16 @@ const ReglasDeValidacion=[
     body('whatsapp')
     .notEmpty().withMessage("Whatsapp obligatorio ")
     .trim(" ")
-    .isNumeric().withMessage(" solo números")
-
-
+    .isNumeric().withMessage(" solo números"),
+    (req, res, next)=>{
+        const errors= validationResult(req)
+    if (!errors.isEmpty()){
+      const datosFormulario=req.body
+      const arrayErrors=errors.array()
+      res.render ("contacto", {arrayErrors, datosFormulario})
+    }else return next() 
+     
+    }
 
 ]
 

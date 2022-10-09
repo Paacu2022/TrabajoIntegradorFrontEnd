@@ -3,6 +3,7 @@ const app= express();
 const PORT=3000
 const hbs= require("express-handlebars");
 const { create } = require("handlebars");
+require ("./configuraciones/mongo")
 
 const rutas=require("./rutas/rutas")
 

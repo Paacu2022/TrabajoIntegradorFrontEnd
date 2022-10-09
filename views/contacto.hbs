@@ -58,6 +58,7 @@
 </div>
   </div>
   </div>
+  
 
   <div class="row">
   <div class="col-12">
@@ -69,9 +70,10 @@
 </div>
 <div class="row">
   <div class="col-12 d-flex justify-content-center ">
-    <span class="bg-warning col-10 h3 text-center"><strong>{{mensaje}}</strong></span>
+    <span class="bg-warning col-10 h3 text-center"><strong>{{confirmacion}}</strong></span>
 </div>
   </div>
+  
 
 
 <div class="row">
@@ -85,35 +87,38 @@
          <div class="col-4 d-flex justify-content-center">
         <a class="btn btn-danger" href="contacto" role="button">Cancelar</a>
       </div>
+      <p>
 
 </div>
 </form>
   </div>
 
+  {{>footer}}
+ {{! <script>
+    Swal.fire({
+        title: '<strong>HTML <u>example</u></strong>',
+        icon: 'info',
+        html:
+          'You can use <b>bold text</b>, ' +
+          '<a href="//sweetalert2.github.io">links</a> ' +
+          'and other HTML tags',
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText:
+          '<i class="fa fa-thumbs-up">Confirmar</i> Great!',
+        confirmButtonAriaLabel: 'Thumbs up, great!',
+        cancelButtonText:
+          '<i class="fa fa-thumbs-down">Cancelar</i>',
+        cancelButtonAriaLabel: 'Thumbs down'
+      })
+
+  </script>!}}
+
+  
+ 
 
 
- {{! <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-Swal.fire({
-  title: '<strong>HTML <u>example</u></strong>',
-  icon: 'info',
-  html:
-    'You can use <b>bold text</b>, ' +
-    '<a href="//sweetalert2.github.io">links</a> ' +
-    'and other HTML tags',
-  showCloseButton: true,
-  showCancelButton: true,
-  focusConfirm: false,
-  confirmButtonText:
-    '<i class="fa fa-thumbs-up">Confirmar</i> Great!',
-  confirmButtonAriaLabel: 'Thumbs up, great!',
-  cancelButtonText:
-    '<i class="fa fa-thumbs-down">Cancelar</i>',
-  cancelButtonAriaLabel: 'Thumbs down'
-})
-
-</script>!}}
 
 
 

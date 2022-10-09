@@ -1,17 +1,14 @@
-const express= require("express")
-const router= express.Router()
-const transport= require("../configuraciones/nodemailer")
-const ReglasDeValidacion= require("../validaciones/reglasDeValidacion")
 
+const transport= require("../configuraciones/nodemailer")
 
 
 function formulario (req,res) {
   res.render("contacto")
 }
 
+async function envioFormulario (req,res){
 
-async function envioFormulario (req,res, next){
-
+  req.app.locals.dulce="pepfdasfdasfsadfase"
     const {nombre, apellido, email, whatsapp, mensaje}= req.body;
         const emailmensaje ={
            to:"paacu21@hotmail.com",
@@ -22,17 +19,14 @@ async function envioFormulario (req,res, next){
     
 
     const sendMailStatus = await transport.sendMail(emailmensaje);
-    let confirmacion=""
     if (sendMailStatus.rejected.length){
       confirmacion= "Ocurrio un error y el formulario no se pudo enviar"
     }else {
       confirmacion="El formulario se envio y se recibio con Éxito"
-      
-
-    }
-    res.render("contacto",{mensaje: confirmacion})
+      }
+     
+    res.render("contacto", {confirmacion})
     
-  
     }
 
 

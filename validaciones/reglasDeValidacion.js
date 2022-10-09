@@ -1,6 +1,7 @@
 const {body, validationResult}=require ("express-validator")
 
 
+
 const ReglasDeValidacion=[
     body('nombre')
     .notEmpty().withMessage("Nombre ")
@@ -23,9 +24,11 @@ const ReglasDeValidacion=[
     if (!errors.isEmpty()){
       const datosFormulario=req.body
       const arrayErrors=errors.array()
+      
       res.render ("contacto", {arrayErrors, datosFormulario})
-    }else return next() 
-     
+      
+  }
+    else return next() 
     }
 
 ]

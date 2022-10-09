@@ -1,9 +1,13 @@
 const express = require ("express")
 const app= express();
 const PORT=3000
-const hbs= require("express-handlebars")
+const hbs= require("express-handlebars");
+const { create } = require("handlebars");
+
 const rutas=require("./rutas/rutas")
 
+const handle= create ({ helpers: require ("./helpers/filtro"),
+                        /*helpers: require("./helpers/alerta")*/})
 
 
 app.listen(PORT, (err)=>{
@@ -15,7 +19,9 @@ app.use(express.urlencoded())
 
 app.use(express.static("public"))
 
-app.engine (".hbs", hbs.engine ({ extname: "hbs", helpers: require("./helpers/filtro") }))
+
+
+app.engine (".hbs", hbs.engine ({ extname: "hbs" }))
 app.set("view engine", "hbs")
 app.set ("views", "./views")
 

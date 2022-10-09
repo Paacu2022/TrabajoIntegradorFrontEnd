@@ -12,3 +12,5 @@ Handlebars.registerHelper ("filtro", function (arrayErrors, name) {
       
       }
     })
+
+    

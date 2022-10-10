@@ -1,9 +1,15 @@
-
-<form>
+<div class="d-flex justify-content-center col-12  bg-success body  bg-opacity-25">
+<form class="col-5 mt-5">
+    <div class="modal-content ">
+      <div class="d-flex justify-content-around bg-primary">
+        <h5 class="h3" id="staticBackdropLabel">Ingrese email y contraseña</h5>
+      </div>
+      
+  <div class="modal-body bg-dark">
   <div class="mb-3">
   <div class="input-group mb-3">
 <img src="imagenes/iconos/email.png"  width="45" height="45">
-<input type="email" class="form-control" placeholder="e-mail" aria-label="Nombre" id="exampleInputEmail1">
+<input type="email" class="form-control" placeholder="e-mail" aria-label="Nombre" id="exampleInputEmail1" autofocus>
     </div>
   </div>
 
@@ -18,6 +24,11 @@
   <button type="button" class="btn btn-primary btn-lg">Ingresar</button>
   <button type="button" class="btn btn-warning btn-lg" data-bs-dismiss="modal">Cancelar</button>
 </div>
+      </div>
+    </div>
 </form>
+<div>
+
+{{>footer}}
 
 

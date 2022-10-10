@@ -28,28 +28,15 @@
         </li>
       </ul>
       <form class="d-flex justify-content-around container-fluid">
-        <button type="button" class="btn btn-primary col-4" data-bs-toggle="modal" data-bs-target="#registro">
-  Registrarse
-</button>
+        <a  class="btn btn-primary col-4" href="registracion"> Registrarse </a>
 <div class="vr"></div>
-<button type="button" class="btn btn-success col-4" data-bs-toggle="modal" data-bs-target="#login">
- Ingresar 
-</button>
+<a class="btn btn-success col-4" href="login">Ingresar</a>
+
 
 
 <!-- Modal -->
-<div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content col-8">
-      <div class="d-flex justify-content-around bg-primary">
-        <h5 class="h3" id="staticBackdropLabel">Ingrese email y contraseña</h5>
-      </div>
-      <div class="modal-body bg-dark">
-        {{>login}}
-      </div>
-    </div>
-  </div>
-</div>
+
+      
 
 <!-- Modal -->
 <div class="modal fade" id="registro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -59,7 +46,7 @@
         <h5 class="modal-title h3 justify-content-around " id="staticBackdropLabel">Complete los campos del registro</h5>
       </div>
       <div class="modal-body bg-light">
-        {{>registracion}}
+        
       </div>
       <div class="modal-footer justify-content-between bg-light">
         <button type="button" class="btn btn-success">Registrarse</button>
@@ -74,5 +61,5 @@
   </div>
 </nav>
 
-<script src="script/focusModal.js"></script>
+
 

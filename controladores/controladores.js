@@ -29,5 +29,12 @@ async function envioFormulario (req,res){
     
     }
 
+    function login (req,res) {
+      res.render("login")
+    }
 
-module.exports={envioFormulario, formulario}
+    function registracion (req,res) {
+      res.render("registracion")
+    }
+
+module.exports={envioFormulario, formulario, login, registracion}

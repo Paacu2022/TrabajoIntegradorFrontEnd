@@ -1,30 +1,41 @@
 <div class="d-flex justify-content-center col-12  bg-success body  bg-opacity-25 border border-info">
-<form class="col-9 border mt-5">
+<form action="/registracion" method="post" class="col-9 border mt-5" >
   <div class="row">
   <div class="col-6">
 <div class="input-group mb-3">
   <img src="imagenes/iconos/nombre.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" id="nombreRegistro" autofocus>
+  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nombreRegistro" autofocus>
 </div></div>
 <div class="col-6">
 <div class="input-group mb-3">
    <img src="imagenes/iconos/apellido.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Apellido" aria-label="Nombre" id="nombreRegistro">
+  <input type="text" class="form-control" placeholder="Apellido" aria-label="Nombre" id="nombreRegistro" name="apellidoRegistro">
 </div>
   </div>
   </div>
+
+{{!Errores campo NombreRegistro}}
+  <div class="row">
+  <div class="col-6">
+<div class="input-group mb-3">
+  {{#filtro prueba "nombreRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div></div>
+
 
 
 <div class="row">
   <div class="col-9">
     <div class="input-group mb-3">
 <img src="imagenes/iconos/calle.png"  width="45" height="45">
-<input type="text" class="form-control col-form-label" placeholder="Direccion: Calle" aria-label="calle">
+<input type="text" class="form-control col-form-label" placeholder="Direccion: Calle" aria-label="calle" name="calleRegistro">
     </div></div>
     <div class="col-3">
       <div class="input-group mb-3">
         <img src="imagenes/iconos/numero.png"  width="45" height="45">
-        <input type="text" class="form-control col-form-label" placeholder="Altura" aria-label="altura">
+        <input type="text" class="form-control col-form-label" placeholder="Altura" aria-label="altura" name="alturaRegistro">
       </div>
     </div></div>
 
@@ -32,18 +43,18 @@
   <div class="col-5">
     <div class="input-group mb-5">
 <img src="imagenes/iconos/location.png"  width="45" height="45">
-<input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad">
+<input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" name="ciudadRegistro">
     </div></div>
     <div class="col-5">
       <div class="input-group mb-5">
         <img src="imagenes/iconos/pais.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Estado" aria-label="Estado">
+  <input type="text" class="form-control" placeholder="Estado" aria-label="Estado" name="estadoRegistro">
       </div>
     </div>
     <div class="col-2">
       <div class="input-group mb-5">
         <img src="imagenes/iconos/postal.png"  width="45" height="45">
-     <input type="text" class="form-control" placeholder="CP" aria-label="Código postal">
+     <input type="text" class="form-control" placeholder="CP" aria-label="Código postal" name="cpRegistro">
       </div>
     </div>
     </div>
@@ -53,12 +64,12 @@
   <div class="col-5">
     <div class="input-group mb-3">
 <img src="imagenes/iconos/email.png"  width="45" height="45">
-<input type="email" class="form-control border border-success" placeholder="e-mail" aria-label="Nombre">
+<input type="email" class="form-control border border-success" placeholder="e-mail" aria-label="email" name="emailRegistro">
     </div></div>
     <div class="col-5">
       <div class="input-group mb-3">
         <img src="imagenes/iconos/email.png"  width="45" height="45">
-<input type="email" class="form-control border border-success" placeholder="Reingrese su e-mail" aria-label="Nombre">
+<input type="email" class="form-control border border-success" placeholder="Reingrese su e-mail" aria-label="email2" name="email2Registro">
       </div>
     </div></div>
 
@@ -66,22 +77,19 @@
   <div class="col-4 ">
     <div class="input-group mb-3">
 <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
-    <input type="password" class="form-control border border-info" placeholder="Contraseña" aria-label="Nombre">
+    <input type="password" class="form-control border border-info" placeholder="Contraseña" aria-label="contraseña" name="contraseñaRegistro">
     </div></div>
     <div class="col-4">
       <div class="input-group mb-3">
         <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
-    <input type="password" class="form-control border border-info" placeholder="re-ingrese su contraseña" aria-label="Nombre">
+    <input type="password" class="form-control border border-info" placeholder="re-ingrese su contraseña" aria-label="contraseña2" name="contraseña2Registro">
       </div>
     </div></div>
     <div class="d-flex justify-content-between ">
-        <button type="button" class="btn btn-success">Registrarse</button>
-        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-success" type="submit">Registrarse</button>
+        <a type="button" class="btn btn-warning" href="registracion">Cancelar</a>
       </div>
-    </div>
-    </div>
-      
-
+    
 </form>
 </div>
 

@@ -14,8 +14,12 @@
   <img src="imagenes/iconos/nombre.png"  width="45" height="45">
   <input type="text" class="form-control col-6" placeholder="Nombre" aria-label="Nombre" id="nombreContacto" name="nombre" autofocus value="{{datosFormulario.nombre}}">
   <span class="badge input-group text-uppercase fs-6 text-danger">
+  <ul>
   {{#filtro arrayErrors "nombre"}} 
- {{this}}
+  
+    <li>{{this}}</li>
+  </ul>
+ 
 </span>  
 {{/filtro}}
 </div></div>

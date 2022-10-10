@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/Paacu2022/TrabajoIntegradorFrontEnd#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
     "express-validator": "^6.14.2",
     "handlebars": "^4.7.7",
     "mongoose": "^6.6.5",
@@ -29,8 +31,7 @@
     "nodemon": "^2.0.20",
     "sweetalert2": "^11.4.38"
   },
-    "nodemonConfig":{
-      "ext": "js, json, hbs, html, css"
-    }
+  "nodemonConfig": {
+    "ext": "js, json, hbs, html, css"
   }
-
+}

@@ -1,5 +1,7 @@
-
 const transport= require("../configuraciones/nodemailer")
+const securepass=require("../helpers/bcrypt")
+const User= require("../Esquemas/esquemaUsuarios")
+
 
 
 function formulario (req,res) {
@@ -8,7 +10,6 @@ function formulario (req,res) {
 
 async function envioFormulario (req,res){
 
-  req.app.locals.dulce="pepfdasfdasfsadfase"
     const {nombre, apellido, email, whatsapp, mensaje}= req.body;
         const emailmensaje ={
            to:"paacu21@hotmail.com",
@@ -37,4 +38,23 @@ async function envioFormulario (req,res){
       res.render("registracion")
     }
 
-module.exports={envioFormulario, formulario, login, registracion}
+
+
+      async function envioRegistracion (req, res){
+      const {nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro} = req.body
+      const encriptada= await securepass.encriptar(contraseñaRegistro)               
+      const nuevoUsuario= new User({
+        nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro: encriptada
+      })
+      nuevoUsuario.save((err)=>{
+        if (!err){
+          res.render("conectado")
+        }else {
+          console.log(err);
+        }
+      })
+    }
+  
+    
+
+module.exports={envioFormulario, formulario, login, registracion, envioRegistracion}

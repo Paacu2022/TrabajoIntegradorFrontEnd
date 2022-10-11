@@ -7,6 +7,8 @@ require ("./configuraciones/mongo")
 
 const rutas=require("./rutas/rutas")
 
+const session= require("express-session")
+
 const handle= create ({ helpers: require ("./helpers/filtro"),
                         /*helpers: require("./helpers/alerta")*/})
 
@@ -17,6 +19,12 @@ app.listen(PORT, (err)=>{
 })
 
 app.use(express.urlencoded())
+
+app.use( session ({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+}))
 
 app.use(express.static("public"))
 

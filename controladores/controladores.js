@@ -48,7 +48,8 @@ async function envioFormulario (req,res){
       })
       nuevoUsuario.save((err)=>{
         if (!err){
-          res.render("conectado")
+          req.session.user= `${nombreRegistro} ${apellidoRegistro}`
+          res.render("conectado", {usuario: req.session.user})
         }else {
           console.log(err);
         }

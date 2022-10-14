@@ -3,11 +3,12 @@ const securepass=require("../helpers/bcrypt")
 const User= require("../Esquemas/esquemaUsuarios")
 
 
-
+/*MOSTRAMOS EL FORMULARIO DE CONTACTO*/
 function formulario (req,res) {
-  res.render("contacto")
+  res.render("contacto", {usuario: req.session.user})
 }
 
+/*ENVIAMOS EL MAIL DEL FORMULARIO DE CONTACTO*/
 async function envioFormulario (req,res){
 
     const {nombre, apellido, email, whatsapp, mensaje}= req.body;
@@ -18,7 +19,6 @@ async function envioFormulario (req,res){
            html: `Contacto de ${nombre} ${apellido} Whatsapp:${whatsapp}: ${mensaje}`
     }
     
-
     const sendMailStatus = await transport.sendMail(emailmensaje);
     if (sendMailStatus.rejected.length){
       confirmacion= "Ocurrio un error y el formulario no se pudo enviar"
@@ -27,27 +27,36 @@ async function envioFormulario (req,res){
       }
      
     res.render("contacto", {confirmacion})
-    
     }
 
+    /*MOSTRAMOS EL INGRESO AL LOGIN*/
     function login (req,res) {
       res.render("login")
     }
 
+    /*MOSTRAMOS EL FORMULARIO DE REGISTRACION*/
     function registracion (req,res) {
-      res.render("registracion")
+      res.render("registracion", )
     }
 
+    /*ENVIAMOS EL FORMULARIO DE REGISTRACION*/
       async function envioRegistracion (req, res){
       const {nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro} = req.body
       const encriptada= await securepass.encriptar(contraseñaRegistro)               
       const nuevoUsuario= new User({
         nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro: encriptada
       })
+      
+      /*const usr={
+        id: nuevoUsuario[0]._id,
+        nombreRegistro: nuevoUsuario[0].nombreRegistro,
+        apellidoRegistro: nuevoUsuario[0].apellidoRegistro
+      }*/ 
       nuevoUsuario.save((err)=>{
         if (!err){
           req.session.user= `${nombreRegistro} ${apellidoRegistro}`
           res.render("conectado", {usuario: req.session.user})
+  
         }else {
           console.log(err);
         }
@@ -60,8 +69,9 @@ async function envioFormulario (req,res){
       if(!usuario.length){
         return res.render ("login", {mensaje: "Usuario o contraseña incorrectos"})
       } if ( await securepass.desencriptar(contraseñaLogin, usuario[0].contraseñaRegistro)){
-        req.session.user= `${usuario[0].nombreRegistro} ${usuario[0].apellidoRegistro}`
+        req.session.user=`${usuario[0].nombreRegistro} ${usuario[0].apellidoRegistro}`
         res.render ("conectado", {usuario: req.session.user})
+
       } else return res.render ("login", {mensaje:"Usuario o contraseña incorrecta"})
     }
   
@@ -70,8 +80,10 @@ async function envioFormulario (req,res){
       res.redirect("/")
     }
 
-    function modificacion (req, res){
-      res.render ("modificacion")
+    async function modificacion (req, res){
+      const user = await User.findById(req.session.user.id).lean()
+      console.log({usuario: req.session.user});
+      res.render ("modificacion", {usuario: req.session.user} )
     }
     
 

@@ -36,7 +36,7 @@ app.set ("views", "./views")
 
 
 app.get("/", (req, res)=>{
-    res.render("home")
+    res.render("home", {usuario: req.session.user})
 })
 
 app.use("/", rutas)

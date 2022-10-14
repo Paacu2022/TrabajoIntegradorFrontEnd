@@ -38,8 +38,6 @@ async function envioFormulario (req,res){
       res.render("registracion")
     }
 
-
-
       async function envioRegistracion (req, res){
       const {nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro} = req.body
       const encriptada= await securepass.encriptar(contraseñaRegistro)               
@@ -55,7 +53,26 @@ async function envioFormulario (req,res){
         }
       })
     }
+
+    async function envioLogin(req, res){
+      const {emailLogin, contraseñaLogin}=req.body
+      const usuario= await User.find().where({emailRegistro: emailLogin})
+      if(!usuario.length){
+        return res.render ("login", {mensaje: "Usuario o contraseña incorrectos"})
+      } if ( await securepass.desencriptar(contraseñaLogin, usuario[0].contraseñaRegistro)){
+        req.session.user= `${usuario[0].nombreRegistro} ${usuario[0].apellidoRegistro}`
+        res.render ("conectado", {usuario: req.session.user})
+      } else return res.render ("login", {mensaje:"Usuario o contraseña incorrecta"})
+    }
   
+    function logout (req, res){
+      req.session.destroy()
+      res.redirect("/")
+    }
+
+    function modificacion (req, res){
+      res.render ("modificacion")
+    }
     
 
-module.exports={envioFormulario, formulario, login, registracion, envioRegistracion}
+module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, modificacion}

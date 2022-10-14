@@ -1,0 +1,90 @@
+<div class="d-flex col-12 justify-content-around">
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#datosPersonales">Modificar Datos Personales</button>
+
+<button type="button" class="btn btn-warning">Modificar Ambos</button>
+
+<button type="button" class="btn btn-info">Modificar solo Usuario y/o Contraseña</button>
+
+
+
+
+</div>
+
+{{!Modal modificacion solo datos personales}}
+
+
+<div class="modal fade " id="datosPersonales" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modificacion Datos Personales</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+  <div class="col-6">
+<div class="input-group mb-3">
+  <img src="imagenes/iconos/nombre.png"  width="45" height="45">
+  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nombreRegistro" autofocus>
+</div></div>
+<div class="col-6">
+<div class="input-group mb-3">
+   <img src="imagenes/iconos/apellido.png"  width="45" height="45">
+  <input type="text" class="form-control" placeholder="Apellido" aria-label="Nombre" id="nombreRegistro" name="apellidoRegistro">
+</div>
+  </div>
+  </div>
+
+{{!Errores campo NombreRegistro}}
+  <div class="row">
+  <div class="col-6">
+<div class="input-group mb-3">
+  {{#filtro prueba "nombreRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div></div>
+
+
+
+<div class="row">
+  <div class="col-9">
+    <div class="input-group mb-3">
+<img src="imagenes/iconos/calle.png"  width="45" height="45">
+<input type="text" class="form-control col-form-label" placeholder="Direccion: Calle" aria-label="calle" name="calleRegistro">
+    </div></div>
+    <div class="col-3">
+      <div class="input-group mb-3">
+        <img src="imagenes/iconos/numero.png"  width="45" height="45">
+        <input type="text" class="form-control col-form-label" placeholder="Altura" aria-label="altura" name="alturaRegistro">
+      </div>
+    </div>
+    </div>
+
+<div class="row">
+  <div class="col-5">
+    <div class="input-group mb-5">
+<img src="imagenes/iconos/location.png"  width="45" height="45">
+<input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" name="ciudadRegistro">
+    </div></div>
+    <div class="col-5">
+      <div class="input-group mb-5">
+        <img src="imagenes/iconos/pais.png"  width="45" height="45">
+  <input type="text" class="form-control" placeholder="Estado" aria-label="Estado" name="estadoRegistro">
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="input-group mb-5">
+        <img src="imagenes/iconos/postal.png"  width="45" height="45">
+     <input type="text" class="form-control" placeholder="CP" aria-label="Código postal" name="cpRegistro">
+      </div>
+    </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Enviar Modificacion </button>
+      </div>
+    </div>
+  </div>
+</div>

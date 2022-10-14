@@ -47,11 +47,7 @@ async function envioFormulario (req,res){
         nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro: encriptada
       })
       
-      /*const usr={
-        id: nuevoUsuario[0]._id,
-        nombreRegistro: nuevoUsuario[0].nombreRegistro,
-        apellidoRegistro: nuevoUsuario[0].apellidoRegistro
-      }*/ 
+      
       nuevoUsuario.save((err)=>{
         if (!err){
           req.session.user= `${nombreRegistro} ${apellidoRegistro}`
@@ -69,8 +65,19 @@ async function envioFormulario (req,res){
       if(!usuario.length){
         return res.render ("login", {mensaje: "Usuario o contraseña incorrectos"})
       } if ( await securepass.desencriptar(contraseñaLogin, usuario[0].contraseñaRegistro)){
-        req.session.user=`${usuario[0].nombreRegistro} ${usuario[0].apellidoRegistro}`
-        res.render ("conectado", {usuario: req.session.user})
+        const usr={
+          id: usuario[0]._id,
+          nombre: usuario[0].nombreRegistro,
+          apellido: usuario[0].apellidoRegistro,
+          /*calle: usuario[0].calleRegistro,
+          altura: usuario[0].alturaRegistro,
+          ciudad: usuario[0].ciudadRegistro,
+          estado: usuario[0].estadoRegistro,
+          cp: usuario[0].cpRegistro,*/
+        }
+
+        req.session.user= usr
+        res.render ("conectado", {usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
 
       } else return res.render ("login", {mensaje:"Usuario o contraseña incorrecta"})
     }
@@ -82,8 +89,7 @@ async function envioFormulario (req,res){
 
     async function modificacion (req, res){
       const user = await User.findById(req.session.user.id).lean()
-      console.log({usuario: req.session.user});
-      res.render ("modificacion", {usuario: req.session.user} )
+      res.render ("modificacion", {user} )
     }
     
 

@@ -25,12 +25,12 @@
   <div class="col-6">
 <div class="input-group mb-3">
   <img src="imagenes/iconos/nombre.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nombreRegistro" autofocus value="{{nombre}}">
+  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nombreRegistro" autofocus value="{{user.nombreRegistro}}">
 </div></div>
 <div class="col-6">
 <div class="input-group mb-3">
    <img src="imagenes/iconos/apellido.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Apellido" aria-label="Nombre" id="nombreRegistro" name="apellidoRegistro">
+  <input type="text" class="form-control" placeholder="Apellido" aria-label="Nombre" id="nombreRegistro" name="apellidoRegistro" value="{{user.apellidoRegistro}}">
 </div>
   </div>
   </div>
@@ -51,12 +51,12 @@
   <div class="col-9">
     <div class="input-group mb-3">
 <img src="imagenes/iconos/calle.png"  width="45" height="45">
-<input type="text" class="form-control col-form-label" placeholder="Direccion: Calle" aria-label="calle" name="calleRegistro">
+<input type="text" class="form-control col-form-label" placeholder="Direccion: Calle" aria-label="calle" name="calleRegistro" value="{{user.calleRegistro}}">
     </div></div>
     <div class="col-3">
       <div class="input-group mb-3">
         <img src="imagenes/iconos/numero.png"  width="45" height="45">
-        <input type="text" class="form-control col-form-label" placeholder="Altura" aria-label="altura" name="alturaRegistro">
+        <input type="text" class="form-control col-form-label" placeholder="Altura" aria-label="altura" name="alturaRegistro" value="{{user.alturaRegistro}}">
       </div>
     </div>
     </div>
@@ -65,18 +65,18 @@
   <div class="col-5">
     <div class="input-group mb-5">
 <img src="imagenes/iconos/location.png"  width="45" height="45">
-<input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" name="ciudadRegistro">
+<input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" name="ciudadRegistro" value="{{user.ciudadRegistro}}">
     </div></div>
     <div class="col-5">
       <div class="input-group mb-5">
         <img src="imagenes/iconos/pais.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Estado" aria-label="Estado" name="estadoRegistro">
+  <input type="text" class="form-control" placeholder="Estado" aria-label="Estado" name="estadoRegistro" value="{{user.estadoRegistro}}">
       </div>
     </div>
     <div class="col-2">
       <div class="input-group mb-5">
         <img src="imagenes/iconos/postal.png"  width="45" height="45">
-     <input type="text" class="form-control" placeholder="CP" aria-label="Código postal" name="cpRegistro">
+     <input type="text" class="form-control" placeholder="CP" aria-label="Código postal" name="cpRegistro" value="{{user.cpRegistro}}">
       </div>
     </div>
     </div>

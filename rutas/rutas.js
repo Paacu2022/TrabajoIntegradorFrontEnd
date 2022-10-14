@@ -16,7 +16,8 @@ router.get("/registracion",  users.registracion)
 router.post("/registracion", users.envioRegistracion)
 router.get("/logout", users.logout)
 router.get("/modificacion", autentificacion, users.modificacion)
-
+router.post("/modificacion", autentificacion, users.envioModificacion)
+router.post("/eliminarCuenta", autentificacion, users.eliminarCuenta)
 
 
 

@@ -89,8 +89,21 @@ async function envioFormulario (req,res){
 
     async function modificacion (req, res){
       const user = await User.findById(req.session.user.id).lean()
-      res.render ("modificacion", {user} )
+      res.render ("modificacion", {user, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`} )
+    }
+    
+    async function envioModificacion (req, res){
+      try{
+        await User.findByIdAndUpdate(req.session.user.id, {nombreRegistro: req.body.nombreRegistro, apellidoRegistro: req.body.apellidoRegistro, calleRegistro: req.body.calleRegistro, alturaRegistro: req.body.alturaRegistro, ciudadRegistro: req.body.ciudadRegistro, estadoRegistro: req.body.estadoRegistro, cpRegistro: req.body.cpRegistro })
+      res.render ("home")
+      } catch (err){
+        res.render ("noAutorizado")
+      }
     }
     
 
-module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, modificacion}
+    function eliminarCuenta (req,res){
+      res.render ("conectado", {user, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
+    }
+
+module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, modificacion, envioModificacion, eliminarCuenta}

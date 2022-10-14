@@ -12,7 +12,7 @@
 
 {{!Modal modificacion solo datos personales}}
 
-
+<form action="/modificacion" method="post" >
 <div class="modal fade " id="datosPersonales" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
@@ -82,10 +82,13 @@
     </div>
       </div>
       <div class="modal-footer d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Enviar Modificacion </button>
+        <a href="/" method="post"  class="btn btn-dark"> Elimar Cuenta</a>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar Cambios</button>
-        <button type="button" class="btn btn-primary">Enviar Modificacion </button>
-        <button type="button" class="btn btn-dark" data-bs-dismiss="modal"> Elimar Cuenta</button>
+        
+        
       </div>
     </div>
   </div>
 </div>
+</form>

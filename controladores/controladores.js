@@ -102,8 +102,17 @@ async function envioFormulario (req,res){
     }
     
 
-    function eliminarCuenta (req,res){
-      res.render ("conectado", {user, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
+     async function eliminarCuenta (req,res){
+    try{
+      await User.findByIdAndDelete(req.session.user.id)
+      req.session.destroy ()
+      res.send("REGISTRO ELIMINADO ")
+    }  catch (err){
+      res.render ("modificacion")
+    }
+    
+    
+    
     }
 
 module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, modificacion, envioModificacion, eliminarCuenta}

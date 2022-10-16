@@ -21,9 +21,9 @@ async function envioFormulario (req,res){
     
     const sendMailStatus = await transport.sendMail(emailmensaje);
     if (sendMailStatus.rejected.length){
-      confirmacion= "Ocurrio un error y el formulario no se pudo enviar"
+      confirmacion= false
     }else {
-      confirmacion="El formulario se envio y se recibio con Éxito"
+      confirmacion=true
       }
      
     res.render("contacto", {confirmacion})

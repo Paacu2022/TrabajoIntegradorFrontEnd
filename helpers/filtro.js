@@ -6,8 +6,8 @@ Handlebars.registerHelper ("filtro", function (arrayErrors, name) {
     let listado= []
     arrayErrors.forEach(campo=>{
       if (campo.param===name){
-          listado.push(campo.msg); 
-        /*return listado.push(campo.msg); */}})
+          listado+= [campo.msg] +  `<br />`
+        }})
       return listado    
       }
     })

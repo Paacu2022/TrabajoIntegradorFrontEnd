@@ -4,17 +4,17 @@ const {body, validationResult}=require ("express-validator")
 
 const ReglasDeValidacion=[
     body('nombre')
-    .notEmpty().withMessage("Nombre ")
-    .isLength({ min:2, max:30}).withMessage(" obligatorio, minimo 3 caracteres")
+    .notEmpty().withMessage("Nombre obligatorio")
+    .isLength({ min:2, max:30}).withMessage("minimo 3 caracteres")
     .trim(" "),
     body('apellido')
-    .notEmpty().withMessage("Apellido ")
-    .isLength({ min:2, max:30}).withMessage(' obligatorio, minimo 3 caracteres')
+    .notEmpty().withMessage("Apellido Obligatorio")
+    .isLength({ min:2, max:30}).withMessage('minimo 3 caracteres')
     .trim(" "),
     body('email')
-    .notEmpty().withMessage("Email ")
+    .notEmpty().withMessage("Email Obligatorio")
     .trim(" ")
-    .isEmail().withMessage(" obligatorio. Formato invalido"),
+    .isEmail().withMessage("Formato invalido"),
     body('whatsapp')
     .notEmpty().withMessage("Whatsapp obligatorio ")
     .trim(" ")

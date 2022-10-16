@@ -13,16 +13,14 @@
   <div class="input-group mb-3">
   <img src="imagenes/iconos/nombre.png"  width="45" height="45">
   <input type="text" class="form-control col-6" placeholder="Nombre" aria-label="Nombre" id="nombreContacto" name="nombre" autofocus value="{{datosFormulario.nombre}}">
-  <span class="badge input-group text-uppercase fs-6 text-danger">
-  <ul>
-  {{#filtro arrayErrors "nombre"}} 
-  
-    <li>{{this}}</li>
-  </ul>
  
-</span>  
+ <span class="badge input-group text-uppercase fs-6 text-danger">
+{{#filtro arrayErrors "nombre"}}
+
+<p>{{msg}}</p>
 {{/filtro}}
-</div></div>
+
+ </span></div></div>
 
 <div class="col-6">
 <div class="input-group mb-3">
@@ -95,11 +93,13 @@
 
 </div>
 </form>
+
   </div>
 
-  {{>footer}}
- {{! <script>
-    Swal.fire({
+ <script>
+function alerta (confirmacion){
+if (confirmacion = true){
+Swal.fire({
         title: '<strong>HTML <u>example</u></strong>',
         icon: 'info',
         html:
@@ -117,9 +117,28 @@
         cancelButtonAriaLabel: 'Thumbs down'
       })
 
-  </script>!}}
+}
 
+}
+alerta()
   
+    
+
+  </script>
+
+{{#unless confirmacion}}
+<script>
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'NO SE PUDO ENVIAR EL FORMULARIO',
+  showConfirmButton: false,
+  timer: 3500
+})
+
+
+</script>
+  {{/unless}}
  
 
 

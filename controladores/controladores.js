@@ -21,9 +21,11 @@ async function envioFormulario (req,res){
     
     const sendMailStatus = await transport.sendMail(emailmensaje);
     if (sendMailStatus.rejected.length){
-      confirmacion= false
+      confirmacion= "Hubo un error y no se pudo enviar el formulario"
+      console.log(confirmacion);
     }else {
       confirmacion=true
+      
       }
      
     res.render("contacto", {confirmacion})
@@ -77,7 +79,7 @@ async function envioFormulario (req,res){
         }
 
         req.session.user= usr
-        res.render ("conectado", {usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
+        res.render ("bienvenida", {usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
 
       } else return res.render ("login", {mensaje:"Usuario o contraseña incorrecta"})
     }
@@ -95,7 +97,8 @@ async function envioFormulario (req,res){
     async function envioModificacion (req, res){
       try{
         await User.findByIdAndUpdate(req.session.user.id, {nombreRegistro: req.body.nombreRegistro, apellidoRegistro: req.body.apellidoRegistro, calleRegistro: req.body.calleRegistro, alturaRegistro: req.body.alturaRegistro, ciudadRegistro: req.body.ciudadRegistro, estadoRegistro: req.body.estadoRegistro, cpRegistro: req.body.cpRegistro })
-      res.render ("home")
+        const modi= true
+        res.render ("modificacion", {modi})
       } catch (err){
         res.render ("noAutorizado")
       }

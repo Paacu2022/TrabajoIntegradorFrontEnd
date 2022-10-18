@@ -70,14 +70,7 @@
 </div>
 </div>
 </div>
-<div class="row">
-  <div class="col-12 d-flex justify-content-center ">
-    <span class="bg-warning col-10 h3 text-center"><strong>{{confirmacion}}</strong></span>
-</div>
-  </div>
   
-
-
 <div class="row">
   <div class="col-4 d-flex justify-content-center">
         <button class="btn btn-success"  id="btnEnviar" type="submit">Enviar Consulta</button>
@@ -95,50 +88,19 @@
 </form>
 
   </div>
-
- <script>
-function alerta (confirmacion){
-if (confirmacion = true){
-Swal.fire({
-        title: '<strong>HTML <u>example</u></strong>',
-        icon: 'info',
-        html:
-          'You can use <b>bold text</b>, ' +
-          '<a href="//sweetalert2.github.io">links</a> ' +
-          'and other HTML tags',
-        showCloseButton: true,
-        showCancelButton: true,
-        focusConfirm: false,
-        confirmButtonText:
-          '<i class="fa fa-thumbs-up">Confirmar</i> Great!',
-        confirmButtonAriaLabel: 'Thumbs up, great!',
-        cancelButtonText:
-          '<i class="fa fa-thumbs-down">Cancelar</i>',
-        cancelButtonAriaLabel: 'Thumbs down'
-      })
-
-}
-
-}
-alerta()
-  
-    
-
-  </script>
-
-{{#unless confirmacion}}
+  {{>footer}}
+{{#if confirmacion}}
 <script>
-Swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: 'NO SE PUDO ENVIAR EL FORMULARIO',
-  showConfirmButton: false,
-  timer: 3500
-})
-
-
+  Swal.fire({
+    title: 'Formulario Enviado con exito!',
+    text: 'Tu consulta fue recibida y a la brevedad nos pondremos en contacto contigo. Gracias!',
+    imageUrl: "https://static.wixstatic.com/media/9e7b2d_ec68a9a2aa7c4c53ab836595f7523331~mv2.gif",
+    imageWidth: 300,
+    imageHeight: 200,
+    imageAlt: 'Custom image',
+  })
 </script>
-  {{/unless}}
+{{/if}}
  
 
 

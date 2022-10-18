@@ -90,7 +90,19 @@
         
         
       </div>
+      <p>Usuario creado: {{user.createdAt}}</p>
+      <p>Ultima Modificacion de datos: {{user.updatedAt}}</p>
     </div>
   </div>
 </div>
 </form>
+{{#if modi}}
+<script>
+ Swal.fire({
+  icon: 'success',
+  title: 'Cuenta Actualizada',
+  text: 'Los cambios que generaste se realizaron con éxito',
+  footer: '<a href="/">Ir a Home</a>'
+})
+</script>
+{{/if}}

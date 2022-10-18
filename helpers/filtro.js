@@ -1,6 +1,7 @@
 const Handlebars = require("handlebars");
 
 
+
 Handlebars.registerHelper ("filtro", function (arrayErrors, name) {
   if (arrayErrors !== undefined){
     let listado= []

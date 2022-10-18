@@ -6,6 +6,8 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    
     
     <div class="container-fluid collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -48,11 +50,29 @@
         {{#if usuario}}
         <div class="d-flex justify-content-around col-5">
           <a class="btn btn-danger col-4" href="/logout">Salir</a>
-          <a class="btn btn-warning col-4" href="/modificacion">Modificar datos de cuenta</a>
+          <a class="btn btn-warning col-4" href="/navbarmodi">Modificar datos de cuenta</a>
         </div>
         {{/if}}
-      
 </nav>
 
 
+ {{#if modi}}
+<div class="container-navbar-modificacion">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      
+<a href="/modiDatosPersonales" class="btn btn-success">Modificar Datos Personales</a>
+
+<button type="button" class="btn btn-warning">Modificar Ambos</button>
+
+<a href="/modiUsuContrase" class="btn btn-primary">Modificar solo Usuario y/o Contraseña</a>
+
+
+
+
+</div>
+    </div>
+  </nav>
+</div>
+  {{/if}}
 

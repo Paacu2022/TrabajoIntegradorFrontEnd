@@ -1,25 +1,4 @@
-<div class="d-flex col-12 justify-content-around">
-<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#datosPersonales">Modificar Datos Personales</button>
-
-<button type="button" class="btn btn-warning">Modificar Ambos</button>
-
-<button type="button" class="btn btn-info">Modificar solo Usuario y/o Contraseña</button>
-
-
-
-
-</div>
-
-{{!Modal modificacion solo datos personales}}
-
-<form action="/modificacion" method="post" >
-<div class="modal fade " id="datosPersonales" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modificacion Datos Personales</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+<form action="/modiDatosPersonales" method="post" >
       <div class="modal-body">
         <div class="row">
   <div class="col-6">
@@ -34,18 +13,6 @@
 </div>
   </div>
   </div>
-
-{{!Errores campo NombreRegistro}}
-  <div class="row">
-  <div class="col-6">
-<div class="input-group mb-3">
-  {{#filtro prueba "nombreRegistro"}} 
-  <ul> 
-    <li>{{this}}</li>
-  </ul>{{/filtro}}
-</div></div></div>
-
-
 
 <div class="row">
   <div class="col-9">
@@ -86,7 +53,7 @@
        
         <a href="/eliminarCuenta" type="submit" class="btn btn-dark"> Elimar Cuenta</a>
         
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar Cambios</button>
+        <a href="/bienvenida" type="submit" class="btn btn-danger" >Cancelar Cambios</a>
         
         
       </div>

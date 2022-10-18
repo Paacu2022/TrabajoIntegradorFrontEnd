@@ -10,7 +10,7 @@ const rutas=require("./rutas/rutas")
 const session= require("express-session")
 
 const handle= create ({ helpers: require ("./helpers/filtro"),
-                        /*helpers: require("./helpers/alerta")*/})
+                        /*helpers: require("./helpers/prueba")*/})
 
 
 app.listen(PORT, (err)=>{
@@ -42,5 +42,5 @@ app.get("/", (req, res)=>{
 app.use("/", rutas)
 
 app.get("*", (req, res)=>{
-    res.render("noAutorizado")
+    res.render("noAutorizado", {usuario: req.session.user})
 })

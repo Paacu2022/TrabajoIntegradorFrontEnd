@@ -14,10 +14,16 @@ router.get("/login", users.login )
 router.post("/login", users.envioLogin)
 router.get("/registracion",  users.registracion)
 router.post("/registracion", users.envioRegistracion)
-router.get("/logout", users.logout)
-router.get("/modificacion", autentificacion, users.modificacion)
-router.post("/modificacion", autentificacion, users.envioModificacion)
+router.get("/logout",autentificacion, users.logout)
+router.get("/modiDatosPersonales", autentificacion, users.modiDatosPersonales)
+router.post("/modiDatosPersonales", autentificacion, users.envioModificacion)
 router.get("/eliminarCuenta", autentificacion, users.eliminarCuenta)
+router.get("/navbarmodi", autentificacion, users.navbar)
+router.get("/modiUsuContrase",autentificacion, users.modiUsuContrase)
+router.post("/modiUsuContrase",autentificacion, users.validarContrasena)
+
+router.get("/bienvenida", autentificacion, users.bienvenida)
+
 
 
 

@@ -28,7 +28,7 @@ async function envioFormulario (req,res){
       
       }
      
-    res.render("contacto", {confirmacion})
+    res.render("contacto", {confirmacion, usuario: req.session.user})
     }
 
     /*MOSTRAMOS EL INGRESO AL LOGIN*/
@@ -53,7 +53,7 @@ async function envioFormulario (req,res){
       nuevoUsuario.save((err)=>{
         if (!err){
           req.session.user= `${nombreRegistro} ${apellidoRegistro}`
-          res.render("conectado", {usuario: req.session.user})
+          res.render("bienvenida", {usuario: `${nuevoUsuario.nombreRegistro} ${nuevoUsuario.apellidoRegistro}`})
   
         }else {
           console.log(err);
@@ -89,16 +89,16 @@ async function envioFormulario (req,res){
       res.redirect("/")
     }
 
-    async function modificacion (req, res){
+    async function modiDatosPersonales (req, res){
       const user = await User.findById(req.session.user.id).lean()
-      res.render ("modificacion", {user, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`} )
+      res.render ("modiDatosPersonales", {user, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`} )
     }
     
     async function envioModificacion (req, res){
       try{
         await User.findByIdAndUpdate(req.session.user.id, {nombreRegistro: req.body.nombreRegistro, apellidoRegistro: req.body.apellidoRegistro, calleRegistro: req.body.calleRegistro, alturaRegistro: req.body.alturaRegistro, ciudadRegistro: req.body.ciudadRegistro, estadoRegistro: req.body.estadoRegistro, cpRegistro: req.body.cpRegistro })
         const modi= true
-        res.render ("modificacion", {modi})
+        res.render ("modiDatosPersonales", {modi, usuario: req.session.user})
       } catch (err){
         res.render ("noAutorizado")
       }
@@ -109,13 +109,34 @@ async function envioFormulario (req,res){
     try{
       await User.findByIdAndDelete(req.session.user.id)
       req.session.destroy ()
-      res.send("REGISTRO ELIMINADO ")
+      res.render("home")
     }  catch (err){
       res.render ("modificacion")
     }
-    
-    
-    
     }
 
-module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, modificacion, envioModificacion, eliminarCuenta}
+    async function validarContrasena (req, res){
+      const datosUsu = await User.findById(req.session.user.id).lean()
+      if ( await securepass.desencriptar(req.body.contraseñaModi,datosUsu.contraseñaRegistro)){
+        const validada= true
+        res.render ("modiUsuContraseña", {validada, usuario: req.session.user, contra: datosUsu.contraseñaRegistro}) 
+      }else{
+        res.send ("NO COINCIDEN")
+      }
+    }
+
+    function navbar (req, res){
+      const modi=true
+      res.render ("bienvenida", {modi, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
+    }
+
+    function modiUsuContrase (req, res){
+      const modi=true
+      res.render("modiUsuContraseña", {modi, usuario: req.session.user})
+    }
+
+    function bienvenida (req, res){
+      res.render("bienvenida", {usuario: `${req.session.user.nombre} ${req.session.user.apellido}` })
+    }
+
+module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, validarContrasena, navbar, modiDatosPersonales, modiUsuContrase, bienvenida}

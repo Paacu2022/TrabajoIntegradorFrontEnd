@@ -2,89 +2,183 @@
 <form action="/registracion" method="post" class="col-9 border mt-5" >
   <div class="row">
   <div class="col-6">
-<div class="input-group mb-3">
+<div class="input-group">
   <img src="imagenes/iconos/nombre.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nombreRegistro" autofocus>
+  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nombreRegistro" autofocus value="{{datosFormulario.nombreRegistro}}">
 </div></div>
 <div class="col-6">
-<div class="input-group mb-3">
+<div class="input-group">
    <img src="imagenes/iconos/apellido.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Apellido" aria-label="Nombre" id="nombreRegistro" name="apellidoRegistro">
+  <input type="text" class="form-control" placeholder="Apellido" aria-label="Nombre" id="apellidoRegistro" name="apellidoRegistro" value="{{datosFormulario.apellidoRegistro}}">
 </div>
   </div>
   </div>
 
-{{!Errores campo NombreRegistro}}
+{{!Errores campo NombreRegistro y ApellidoRegistro}}
   <div class="row">
   <div class="col-6">
-<div class="input-group mb-3">
-  {{#filtro prueba "nombreRegistro"}} 
+<div class="badge input-group text-uppercase text-danger mb-2 ">
+  {{#filtro errores "nombreRegistro"}} 
   <ul> 
     <li>{{this}}</li>
   </ul>{{/filtro}}
-</div></div></div>
+</div></div>
+
+<div class="col-6">
+<div class="badge input-group text-uppercase text-danger mb-2 ">
+  {{#filtro errores "apellidoRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+</div>
 
 
 
 <div class="row">
   <div class="col-9">
-    <div class="input-group mb-3">
+    <div class="input-group">
 <img src="imagenes/iconos/calle.png"  width="45" height="45">
-<input type="text" class="form-control col-form-label" placeholder="Direccion: Calle" aria-label="calle" name="calleRegistro">
+<input type="text" class="form-control col-form-label" placeholder="Direccion: Calle" aria-label="calle" name="calleRegistro" value="{{datosFormulario.calleRegistro}}">
     </div></div>
     <div class="col-3">
-      <div class="input-group mb-3">
+      <div class="input-group ">
         <img src="imagenes/iconos/numero.png"  width="45" height="45">
-        <input type="text" class="form-control col-form-label" placeholder="Altura" aria-label="altura" name="alturaRegistro">
+        <input type="text" class="form-control col-form-label" placeholder="Altura" aria-label="altura" name="alturaRegistro" value="{{datosFormulario.alturaRegistro}}">
       </div>
     </div></div>
+
+    <div class="row">
+  <div class="col-9">
+<div class="badge input-group text-uppercase text-danger mb-2 ">
+  {{#filtro errores "calleRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+
+<div class="col-3">
+<div class="badge input-group text-uppercase text-danger mb-2 ">
+  {{#filtro errores "alturaRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+</div>
 
 <div class="row">
   <div class="col-5">
-    <div class="input-group mb-5">
+    <div class="input-group ">
 <img src="imagenes/iconos/location.png"  width="45" height="45">
-<input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" name="ciudadRegistro">
+<input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" name="ciudadRegistro" value="{{datosFormulario.ciudadRegistro}}">
     </div></div>
     <div class="col-5">
-      <div class="input-group mb-5">
+      <div class="input-group">
         <img src="imagenes/iconos/pais.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Estado" aria-label="Estado" name="estadoRegistro">
+  <input type="text" class="form-control" placeholder="Estado" aria-label="Estado" name="estadoRegistro" value="{{datosFormulario.estadoRegistro}}">
       </div>
     </div>
     <div class="col-2">
-      <div class="input-group mb-5">
+      <div class="input-group ">
         <img src="imagenes/iconos/postal.png"  width="45" height="45">
-     <input type="text" class="form-control" placeholder="CP" aria-label="Código postal" name="cpRegistro">
+     <input type="text" class="form-control" placeholder="CP" aria-label="Código postal" name="cpRegistro" value="{{datosFormulario.cpRegistro}}">
       </div>
     </div>
     </div>
+
+    <div class="row">
+  <div class="col-5">
+<div class="badge input-group text-uppercase text-danger mb-2">
+  {{#filtro errores "ciudadRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+
+<div class="col-5">
+<div class="badge input-group text-uppercase text-danger mb-2">
+  {{#filtro errores "estadoRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+
+<div class="col-2">
+<div class="badge input-group text-uppercase text-danger mb-2">
+  {{#filtro errores "cpRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+</div>
     
     
 <div class="row d-flex justify-content-center">
   <div class="col-5">
-    <div class="input-group mb-3">
+    <div class="input-group">
 <img src="imagenes/iconos/email.png"  width="45" height="45">
-<input type="email" class="form-control border border-success" placeholder="e-mail" aria-label="email" name="emailRegistro">
+<input type="email" class="form-control border border-success" placeholder="e-mail" aria-label="email" name="emailRegistro" value="{{datosFormulario.emailRegistro}}">
     </div></div>
     <div class="col-5">
-      <div class="input-group mb-3">
+      <div class="input-group">
         <img src="imagenes/iconos/email.png"  width="45" height="45">
-<input type="email" class="form-control border border-success" placeholder="Reingrese su e-mail" aria-label="email2" name="email2Registro">
+<input type="email" class="form-control border border-success" placeholder="Reingrese su e-mail" aria-label="email2" name="email2Registro" value="{{datosFormulario.email2Registro}}">
       </div>
     </div></div>
 
+     <div class="row">
+  <div class="col-6">
+<div class="badge input-group text-uppercase text-danger mb-2 ">
+  {{#filtro errores "emailRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+
+<div class="col-6">
+<div class="badge input-group text-uppercase text-danger mb-2 ">
+  {{#filtro errores "email2Registro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+</div>
+
 <div class="row d-flex justify-content-center">
   <div class="col-4 ">
-    <div class="input-group mb-3">
+    <div class="input-group">
 <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
-    <input type="password" class="form-control border border-info" placeholder="Contraseña" aria-label="contraseña" name="contraseñaRegistro">
+    <input type="password" class="form-control border border-info" placeholder="Contraseña" aria-label="contraseña" name="contraseñaRegistro" value="{{datosFormulario.contraseñaRegistro}}">
     </div></div>
+
+    
+   
+
     <div class="col-4">
-      <div class="input-group mb-3">
+      <div class="input-group">
         <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
-    <input type="password" class="form-control border border-info" placeholder="re-ingrese su contraseña" aria-label="contraseña2" name="contraseña2Registro">
+    <input type="password" class="form-control border border-info" placeholder="re-ingrese su contraseña" aria-label="contraseña2" name="contraseña2Registro" value="{{datosFormulario.contraseña2Registro}}">
       </div>
     </div></div>
+
+    <div class="row">
+  <div class="col-6">
+<div class="badge input-group text-uppercase text-danger  ">
+  {{#filtro errores "contraseñaRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+
+ 
+  <div class="col-6">
+<div class="badge input-group text-uppercase text-danger  ">
+  {{#filtro errores "contraseña2Registro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div></div>
+
     <div class="d-flex justify-content-between ">
         <button class="btn btn-success" type="submit">Registrarse</button>
         <a type="button" class="btn btn-warning" href="registracion">Cancelar</a>

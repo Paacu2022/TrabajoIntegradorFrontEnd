@@ -1,29 +1,39 @@
-
+<div class="d-flex justify-content-center mt-5">
 <form action="/modiUsuContrase" method="post" >
 {{#unless validada}}
-  <div class="input-group mb-3">
+  <div class="input-group mb-3" >
     <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
-    <input type="password" class="form-control" placeholder="Ingrese Contraseña Actual" aria-label="contraseñaVieja" name="contraseñaModi" value="{{contra}}">
+    <input type="password" class="form-control" placeholder="Ingrese Contraseña Actual" aria-label="contraseñaVieja" name="contraseñaModi" autofocus>
      <button type="submit" class="btn btn-primary">Validar Contraseña </button>
-    </div> {{/unless}}
+   </div>
+<div class="fw-bold" >
+
+     <p>{{mensaje}}</p>
+
+</div>
+
+     
+     
+     {{/unless}}
     {{#if validada}}
     <div class="input-group mb-3">
     <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
-    <input type="password" class="form-control" placeholder="Ingrese Nueva Contraseña" aria-label="contraseñaNueva1" name="contraseñanueva1">
+    <input type="password" class="form-control" placeholder="Ingrese Nueva Contraseña" aria-label="contraseñaNueva1" name="contraseñanueva1" autofocus>
     </div>
 
-     <div class="input-group mb-3">
+     <div class="input-group mb-3 ">
     <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
     <input type="password" class="form-control" placeholder="Confirme Nueva Contraseña " aria-label="contraseñaNueva2" name="contraseñanueva2">
     </div>
       
       </form>
+      </div> 
       <form>
-      <div class="modal-footer d-flex justify-content-between">
+      <div class="d-flex justify-content-evenly">
         <button type="submit" class="btn btn-primary" >Enviar Modificacion </button>
         {{/if}}
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar Cambios</button>        
+        <a href="bienvenida" class="btn btn-danger">Cancelar Cambios</a>        
       </div>
       </form>
-      
+     
       

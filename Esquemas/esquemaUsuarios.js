@@ -8,7 +8,7 @@ const esquemaUsuarios= new Schema ({
     ciudadRegistro: {type: String},
     estadoRegistro: {type: String},
     cpRegistro: {type: String},
-    emailRegistro: {type: String, required:true, lowercase: true, trim: true},
+    emailRegistro: {type: String, required:true, lowercase: true, trim: true, unique: true},
     email2Registro: {type: String, lowercase: true, trim: true},
     contraseñaRegistro: {type: String, required:true},
     contraseña2Registro: {type: String},

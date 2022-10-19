@@ -119,9 +119,11 @@ async function envioFormulario (req,res){
       const datosUsu = await User.findById(req.session.user.id).lean()
       if ( await securepass.desencriptar(req.body.contraseñaModi,datosUsu.contraseñaRegistro)){
         const validada= true
-        res.render ("modiUsuContraseña", {validada, usuario: req.session.user, contra: datosUsu.contraseñaRegistro}) 
+        const modi=true
+        res.render ("modiUsuContraseña", {modi, validada, usuario: req.session.user, contra: datosUsu.contraseñaRegistro}) 
       }else{
-        res.send ("NO COINCIDEN")
+        const modi=true
+        res.render ("modiUsuContraseña", {modi, mensaje: "Contraseña Incorrecta", usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
       }
     }
 

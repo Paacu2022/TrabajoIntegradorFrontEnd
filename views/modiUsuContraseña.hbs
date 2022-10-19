@@ -1,39 +1,38 @@
 <div class="d-flex justify-content-center mt-5">
-<form action="/modiUsuContrase" method="post" >
-{{#unless validada}}
-  <div class="input-group mb-3" >
+<form action="/nuevaContrase" method="post">
+
+  <div class="input-group" >
     <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
-    <input type="password" class="form-control" placeholder="Ingrese Contraseña Actual" aria-label="contraseñaVieja" name="contraseñaModi" autofocus>
-     <button type="submit" class="btn btn-primary">Validar Contraseña </button>
+    <input type="password" class="form-control" placeholder="Ingrese Contraseña Actual" aria-label="contraseñaVieja" name="contraseñaModi" autofocus> 
    </div>
-<div class="fw-bold" >
 
-     <p>{{mensaje}}</p>
+   <div class="input-group mb-3">
+  <p class="badge input-group text-uppercase text-danger mb-2">{{mensaje}}</p>
+    </div>
 
-</div>
-
-     
-     
-     {{/unless}}
-    {{#if validada}}
     <div class="input-group mb-3">
     <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
-    <input type="password" class="form-control" placeholder="Ingrese Nueva Contraseña" aria-label="contraseñaNueva1" name="contraseñanueva1" autofocus>
+    <input type="password" class="form-control" placeholder="Ingrese Nueva Contraseña" aria-label="contraseñaNueva1" name="contrasenueva1" >
     </div>
 
      <div class="input-group mb-3 ">
     <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
-    <input type="password" class="form-control" placeholder="Confirme Nueva Contraseña " aria-label="contraseñaNueva2" name="contraseñanueva2">
+    <input type="password" class="form-control" placeholder="Confirme Nueva Contraseña " aria-label="contraseñaNueva2" name="contrasenueva2">
     </div>
+
+    
       
-      </form>
+     
       </div> 
-      <form>
+     
       <div class="d-flex justify-content-evenly">
         <button type="submit" class="btn btn-primary" >Enviar Modificacion </button>
-        {{/if}}
-        <a href="bienvenida" class="btn btn-danger">Cancelar Cambios</a>        
+      
+        <a href="bienvenida" class="btn btn-danger">Cancelar Cambios</a>   
       </div>
-      </form>
+   
+      
+
+     
      
       

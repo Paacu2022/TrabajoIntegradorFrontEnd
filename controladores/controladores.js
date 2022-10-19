@@ -57,6 +57,9 @@ async function envioFormulario (req,res){
   
         }else {
           console.log(err);
+          const errorEnMongo=true
+          res. render ("registracion", errorEnMongo)
+
         }
       })
     }
@@ -141,4 +144,31 @@ async function envioFormulario (req,res){
       res.render("bienvenida", {usuario: `${req.session.user.nombre} ${req.session.user.apellido}` })
     }
 
-module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, validarContrasena, navbar, modiDatosPersonales, modiUsuContrase, bienvenida}
+   async  function nuevaContrase (req, res){
+    const datosUsu = await User.findById(req.session.user.id).lean()
+    if ( await securepass.desencriptar(req.body.contraseñaModi,datosUsu.contraseñaRegistro)){
+      const modi=true
+      res.render ("modiUsuContraseña", {modi,  usuario: req.session.user, contra: datosUsu.contraseñaRegistro,}) 
+
+
+      
+    }else{
+      const modi=true
+      res.render ("modiUsuContraseña", {modi, mensaje: "Contraseña Incorrecta", usuario: req.session.user})
+    }
+    }
+
+
+      
+    
+
+
+
+
+
+     
+    
+
+
+
+module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, validarContrasena, navbar, modiDatosPersonales, modiUsuContrase, bienvenida, nuevaContrase}

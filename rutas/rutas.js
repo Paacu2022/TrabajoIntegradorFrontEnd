@@ -2,7 +2,7 @@ const express=require ("express")
 const router= express.Router()
 const users= require ("../controladores/controladores")
 const ReglasDeValidacion= require ("../validaciones/reglasDeValidacion")
-const validacionRegistro=require("../validaciones/validacionRegistro")
+const {validacionRegistro, validacionContrase }=require("../validaciones/validacionRegistro")
 const autentificacion=require("../helpers/autentificacion")
 
 
@@ -21,10 +21,9 @@ router.get("/eliminarCuenta", autentificacion, users.eliminarCuenta)
 router.get("/navbarmodi", autentificacion, users.navbar)
 router.get("/modiUsuContrase",autentificacion, users.modiUsuContrase)
 router.post("/modiUsuContrase",autentificacion, users.validarContrasena)
-
 router.get("/bienvenida", autentificacion, users.bienvenida)
 
-
+router.post("/nuevaContrase", users.nuevaContrase)
 
 
 module.exports=router

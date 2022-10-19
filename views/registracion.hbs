@@ -188,3 +188,13 @@
 </div>
 
 {{>footer}}
+{{#if errorEnMongo}}
+<script>
+  Swal.fire({
+  icon: 'error',
+  title: 'Ya tienes un usuario con ese email',
+  text: 'No podemos crear un nuevo usuario con ese mail, intenta con otro mail o inicia sesion con ese mail',
+  footer: '<a href="/login">Iniciar Sesion</a>'
+})
+</script>
+{{/if}}

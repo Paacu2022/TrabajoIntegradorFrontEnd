@@ -144,19 +144,51 @@ async function envioFormulario (req,res){
       res.render("bienvenida", {usuario: `${req.session.user.nombre} ${req.session.user.apellido}` })
     }
 
-   async  function nuevaContrase (req, res){
+   async  function nuevaContrase (req, res, next){
     const datosUsu = await User.findById(req.session.user.id).lean()
     if ( await securepass.desencriptar(req.body.contraseñaModi,datosUsu.contraseñaRegistro)){
       const modi=true
-      res.render ("modiUsuContraseña", {modi,  usuario: req.session.user, contra: datosUsu.contraseñaRegistro,}) 
-
-
+                if (req.body.contrasenueva1 !== req.body.contrasenueva2){
       
+                res.render ("modiUsuContraseña", {modi, coinciden: "Las contraseñas Nuevas no coiciden" , usuario: req.session.user, contra: datosUsu.contraseñaRegistro,}) 
+      }else{
+        async function encriptar (){
+          const encriptada= await securepass.encriptar(req.body.contrasenueva1)
+        
+
+        async function modicontrase (){
+          try{
+          await User.findByIdAndUpdate(req.session.user.id, {contraseñaRegistro: encriptada })
+          res.send("CONTRASEÑA MODIFICADA")
+          } catch (err){
+          res.send ("noAutorizado")
+          } }
+          modicontrase ()                         }
+          encriptar()
+        
+      }
     }else{
       const modi=true
       res.render ("modiUsuContraseña", {modi, mensaje: "Contraseña Incorrecta", usuario: req.session.user})
     }
+
+    /*async function envioRegistracion (req, res){
+      const {nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro} = req.body
+      const encriptada= await securepass.encriptar(contraseñaRegistro)               
+      const nuevoUsuario= new User({
+        nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro: encriptada
+      })
+      
+      async function encriptar (){
+        const encriptada= await securepass.encriptar(req.body.contrasenueva1)
+      }
+      
+      
+      
+      */
+      
     }
+  
 
 
       

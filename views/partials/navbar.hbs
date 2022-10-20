@@ -1,4 +1,4 @@
-<nav class=" h2 navbar-dark bg-dark navbar navbar-expand-lg navbar-light bg-light">
+<nav class=" fs-4 navbar-dark bg-dark navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     {{#if usuario}}
     <a class="navbar-brand" href="/"><img src="imagenes/iconos/coding.png"  width="45" height="45"></a>
@@ -13,10 +13,10 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           {{#if usuario}}
-          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+          <a class="nav-link active" aria-current="page" href="#">Developer</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">ApiMarvel</a>
+          <a class="nav-link" href="#">Consulta a una Api</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,9 +24,10 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">JavaScrip</a></li>
-            <li><a class="dropdown-item" href="#">Interesantes</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Algo más aquí</a></li>
+            <li><a class="dropdown-item" href="#">Base de datos</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Node js</a></li>
           </ul>{{/if}}
            
         </li>
@@ -49,30 +50,30 @@
        
         {{#if usuario}}
         <div class="d-flex justify-content-around col-5">
-          <a class="btn btn-danger col-4" href="/logout">Salir</a>
-          <a class="btn btn-warning col-4" href="/navbarmodi">Modificar datos de cuenta</a>
+          <a class="btn btn-danger col-4 btn-lg" href="/logout">Salir</a>
+          <a class="btn btn-warning col-4 btn-lg" href="/navbarmodi">Modificar cuenta</a>
         </div>
         {{/if}}
 </nav>
 
 
  {{#if modi}}
-<div class="container-navbar-modificacion">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+
+
+    <div class="d-flex justify-content-around">
+   
       
 <a href="/modiDatosPersonales" class="btn btn-success">Modificar Datos Personales</a>
 
-<button type="button" class="btn btn-warning">Modificar Ambos</button>
-
 <a href="/modiUsuContrase" class="btn btn-primary">Modificar solo Usuario y/o Contraseña</a>
-
-
-
-
-</div>
+   
     </div>
-  </nav>
-</div>
+
+
+
+
+    
+ 
+
   {{/if}}
 

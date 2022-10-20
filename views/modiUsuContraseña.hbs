@@ -22,10 +22,6 @@
     <div class="input-group mb-3">
   <p class="badge input-group text-uppercase text-danger mb-2">{{coinciden}}</p>
     </div>
-
-    
-      
-     
       </div> 
      
       <div class="d-flex justify-content-evenly">
@@ -33,7 +29,21 @@
       
         <a href="bienvenida" class="btn btn-danger">Cancelar Cambios</a>   
       </div>
+
+      {{#if modificada}}
+      <script>
+        Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'La contraseña se ha modificado con éxito!',
+        footer: '<a href="/bienvenida">Ir al Inicio</a>'
+})
+      </script>
+
+    {{/if}}
    
+
+   {{>footer}}
       
 
      

@@ -58,7 +58,7 @@ async function envioFormulario (req,res){
         }else {
           console.log(err);
           const errorEnMongo=true
-          res. render ("registracion", errorEnMongo)
+          res. render ("registracion", {errorEnMongo})
 
         }
       })
@@ -74,11 +74,7 @@ async function envioFormulario (req,res){
           id: usuario[0]._id,
           nombre: usuario[0].nombreRegistro,
           apellido: usuario[0].apellidoRegistro,
-          /*calle: usuario[0].calleRegistro,
-          altura: usuario[0].alturaRegistro,
-          ciudad: usuario[0].ciudadRegistro,
-          estado: usuario[0].estadoRegistro,
-          cp: usuario[0].cpRegistro,*/
+       
         }
 
         req.session.user= usr
@@ -109,12 +105,18 @@ async function envioFormulario (req,res){
     
 
      async function eliminarCuenta (req,res){
-    try{
+      
+    
+      try{
       await User.findByIdAndDelete(req.session.user.id)
       req.session.destroy ()
-      res.render("home")
+      const eliminar = true 
+      res.render("modiDatosPersonales", {eliminar})
+ 
+
+
     }  catch (err){
-      res.render ("modificacion")
+      res.send (err)
     }
     }
 
@@ -159,7 +161,8 @@ async function envioFormulario (req,res){
         async function modicontrase (){
           try{
           await User.findByIdAndUpdate(req.session.user.id, {contraseñaRegistro: encriptada })
-          res.send("CONTRASEÑA MODIFICADA")
+          const modificada = true
+          res.render ("modiUsuContraseña", {modi, modificada,  usuario: req.session.user}) 
           } catch (err){
           res.send ("noAutorizado")
           } }
@@ -172,21 +175,6 @@ async function envioFormulario (req,res){
       res.render ("modiUsuContraseña", {modi, mensaje: "Contraseña Incorrecta", usuario: req.session.user})
     }
 
-    /*async function envioRegistracion (req, res){
-      const {nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro} = req.body
-      const encriptada= await securepass.encriptar(contraseñaRegistro)               
-      const nuevoUsuario= new User({
-        nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro: encriptada
-      })
-      
-      async function encriptar (){
-        const encriptada= await securepass.encriptar(req.body.contrasenueva1)
-      }
-      
-      
-      
-      */
-      
     }
   
 

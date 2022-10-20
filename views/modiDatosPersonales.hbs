@@ -53,7 +53,7 @@
        
         <a href="/eliminarCuenta" type="submit" class="btn btn-dark"> Elimar Cuenta</a>
         
-        <a href="/bienvenida" type="submit" class="btn btn-danger" >Cancelar Cambios</a>
+        <a href="/" type="submit" class="btn btn-danger" >Cancelar Cambios</a>
         
         
       </div>
@@ -73,3 +73,20 @@
 })
 </script>
 {{/if}}
+
+
+{{#if eliminar}}
+<script>
+Swal.fire({
+  title: 'Usuario eliminado',
+  text: 'Tu Cuenta ha sido eliminada definitivamente',
+  imageUrl: "https://brandvan.io/wp-content/uploads/2021/07/giphy.gif",
+  imageWidth: 400,
+  imageHeight: 200,
+  imageAlt: 'Usuario Eliminado',
+})
+</script>
+{{/if}}
+
+
+{{>footer}}

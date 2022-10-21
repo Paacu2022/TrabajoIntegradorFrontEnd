@@ -49,7 +49,6 @@ async function envioFormulario (req,res){
         nombreRegistro, apellidoRegistro, calleRegistro, alturaRegistro, ciudadRegistro, estadoRegistro, cpRegistro, emailRegistro, contraseñaRegistro: encriptada
       })
       
-      
       nuevoUsuario.save((err)=>{
         if (!err){
           req.session.user= `${nombreRegistro} ${apellidoRegistro}`
@@ -63,7 +62,7 @@ async function envioFormulario (req,res){
         }
       })
     }
-
+//Cuando queremos acceder a loguearnos//
     async function envioLogin(req, res){
       const {emailLogin, contraseñaLogin}=req.body
       const usuario= await User.find().where({emailRegistro: emailLogin})
@@ -83,11 +82,12 @@ async function envioFormulario (req,res){
       } else return res.render ("login", {mensaje:"Usuario o contraseña incorrecta"})
     }
   
+    //cuando nos deslogueamos//
     function logout (req, res){
       req.session.destroy()
       res.redirect("/")
     }
-
+//cuando solicitamos la modificacion de datos personales//
     async function modiDatosPersonales (req, res){
       const user = await User.findById(req.session.user.id).lean()
       res.render ("modiDatosPersonales", {user, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`} )
@@ -103,56 +103,41 @@ async function envioFormulario (req,res){
       }
     }
     
-
+//cuando eliminamos la cuenta//
      async function eliminarCuenta (req,res){
-      
-    
       try{
       await User.findByIdAndDelete(req.session.user.id)
       req.session.destroy ()
       const eliminar = true 
       res.render("modiDatosPersonales", {eliminar})
- 
-
 
     }  catch (err){
       res.send (err)
     }
     }
 
-    async function validarContrasena (req, res){
-      const datosUsu = await User.findById(req.session.user.id).lean()
-      if ( await securepass.desencriptar(req.body.contraseñaModi,datosUsu.contraseñaRegistro)){
-        const validada= true
-        const modi=true
-        res.render ("modiUsuContraseña", {modi, validada, usuario: req.session.user, contra: datosUsu.contraseñaRegistro}) 
-      }else{
-        const modi=true
-        res.render ("modiUsuContraseña", {modi, mensaje: "Contraseña Incorrecta", usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
-      }
-    }
-
+//cuando activamos el navbar de modificacion de datos//
     function navbar (req, res){
       const modi=true
       res.render ("bienvenida", {modi, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
     }
-
+//cuando pedimos el formulario de modificacion de contraseña//
     function modiUsuContrase (req, res){
-      const modi=true
-      res.render("modiUsuContraseña", {modi, usuario: req.session.user})
+      res.render("modiUsuContraseña", {usuario: req.session.user})
     }
 
     function bienvenida (req, res){
       res.render("bienvenida", {usuario: `${req.session.user.nombre} ${req.session.user.apellido}` })
     }
-
+    
+//cuando vamos a modificar la contraseña y validamos que la contraseña actual coincida//
    async  function nuevaContrase (req, res, next){
     const datosUsu = await User.findById(req.session.user.id).lean()
     if ( await securepass.desencriptar(req.body.contraseñaModi,datosUsu.contraseñaRegistro)){
-      const modi=true
+      
                 if (req.body.contrasenueva1 !== req.body.contrasenueva2){
       
-                res.render ("modiUsuContraseña", {modi, coinciden: "Las contraseñas Nuevas no coiciden" , usuario: req.session.user, contra: datosUsu.contraseñaRegistro,}) 
+                res.render ("modiUsuContraseña", {coinciden: "Las contraseñas Nuevas no coiciden" , usuario: req.session.user, contra: datosUsu.contraseñaRegistro,}) 
       }else{
         async function encriptar (){
           const encriptada= await securepass.encriptar(req.body.contrasenueva1)
@@ -161,8 +146,7 @@ async function envioFormulario (req,res){
         async function modicontrase (){
           try{
           await User.findByIdAndUpdate(req.session.user.id, {contraseñaRegistro: encriptada })
-          const modificada = true
-          res.render ("modiUsuContraseña", {modi, modificada,  usuario: req.session.user}) 
+          res.render ("modiUsuContraseña", {modificada,  usuario: req.session.user}) 
           } catch (err){
           res.send ("noAutorizado")
           } }
@@ -191,4 +175,4 @@ async function envioFormulario (req,res){
 
 
 
-module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, validarContrasena, navbar, modiDatosPersonales, modiUsuContrase, bienvenida, nuevaContrase}
+module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, navbar, modiDatosPersonales, modiUsuContrase, bienvenida, nuevaContrase}

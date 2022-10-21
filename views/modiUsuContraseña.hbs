@@ -10,19 +10,38 @@
   <p class="badge input-group text-uppercase text-danger mb-2">{{mensaje}}</p>
     </div>
 
-    <div class="input-group mb-3">
-    <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
+    <div class="input-group  mt-5">
+    <img src="imagenes/iconos/contraseña2.png"  width="45" height="45">
     <input type="password" class="form-control" placeholder="Ingrese Nueva Contraseña" aria-label="contraseñaNueva1" name="contrasenueva1" >
     </div>
 
-     <div class="input-group mb-3 ">
-    <img src="imagenes/iconos/contraseña.png"  width="45" height="45">
+<div class="input-group mb-3">
+    <div class="badge input-group text-uppercase text-danger  ">
+  {{#filtro errores "contrasenueva1"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div>
+    </div>
+
+
+     <div class="input-group">
+    <img src="imagenes/iconos/contraseña2.png"  width="45" height="45">
     <input type="password" class="form-control" placeholder="Confirme Nueva Contraseña " aria-label="contraseñaNueva2" name="contrasenueva2">
     </div>
-    <div class="input-group mb-3">
-  <p class="badge input-group text-uppercase text-danger mb-2">{{coinciden}}</p>
+    <div class="input-group ">
+  <p class="badge input-group text-uppercase text-danger">{{coinciden}}</p>
     </div>
       </div> 
+
+<div class="col-12">
+<div class="badge input-group text-uppercase text-danger  ">
+  {{#filtro errores "contrasenueva2"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div></div>
+      
      
       <div class="d-flex justify-content-evenly">
         <button type="submit" class="btn btn-primary" >Enviar Modificacion </button>

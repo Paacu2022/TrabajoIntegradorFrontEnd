@@ -20,9 +20,8 @@ router.post("/modiDatosPersonales", autentificacion, users.envioModificacion)
 router.get("/eliminarCuenta", autentificacion, users.eliminarCuenta)
 router.get("/navbarmodi", autentificacion, users.navbar)
 router.get("/modiUsuContrase",autentificacion, users.modiUsuContrase)
-router.post("/modiUsuContrase",autentificacion, users.validarContrasena)
 router.get("/bienvenida", autentificacion, users.bienvenida)
-router.post("/nuevaContrase", users.nuevaContrase)
+router.post("/nuevaContrase",validacionContrase, users.nuevaContrase)
 
 
 module.exports=router

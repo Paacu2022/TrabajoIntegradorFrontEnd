@@ -94,31 +94,19 @@ const validacionRegistro=[
 
 const validacionContrase=[
     body('contrasenueva1')
-    .notEmpty().withMessage("La Contraseña1 no puede estar vacia ")
-    .isLength({ min:2, max:30}).withMessage(" Debe contener minimamente 2 caracteres1")
-    .trim(" ")
-    .custom ((value, {req} )=>{
-        if ( value !== req.body.contrasenueva2){
-            throw new Error ("Las Contraseñas no coinciden1")
-        } return true
-    }),
-
+    .notEmpty().withMessage("La Contraseña no puede estar vacia ")
+    .isLength({ min:2, max:30}).withMessage(" Debe contener minimamente 2 caracteres")
+    .trim(" "),
+ 
     body('contrasenueva2')
-    .notEmpty().withMessage("Debe confirmar la misma Contraseña2")
-    .isLength({ min:2, max:30}).withMessage(" Debe contener minimamente 2 caracteres2")
-    .trim(" ")
-    .custom ((value, {req} )=>{
-        if ( value !== req.body.contrasenueva1){
-            throw new Error ("Las Contraseñas no coinciden2")
-        } return true
-    }
-    ),
+    .notEmpty().withMessage("Debe confirmar la misma Contraseña")
+    .isLength({ min:2, max:30}).withMessage(" Debe contener minimamente 2 caracteres")
+    .trim(" "),
     (req, res, next)=>{
         const errors= validationResult(req)
     if (!errors.isEmpty()){
  
       errores=errors.array()
-      const validada= true
 
       const modi=true
       res.render ("modiUsuContraseña", {errores, modi, usuario: req.session.user})

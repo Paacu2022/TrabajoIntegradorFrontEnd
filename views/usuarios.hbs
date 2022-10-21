@@ -1,9 +1,9 @@
 
-<table class="table table-hover" tabindex="1">
+<table class="table table-hover">
        
   <thead>
     <tr class="table-dark">
-      <th scope="col">ID</th>
+      <th scope="col">Nº</th>
       <th scope="col">Apellido</th>
       <th scope="col">Nombre</th>
       <th scope="col">Direccion</th>
@@ -12,12 +12,13 @@
       <th scope="col">Estado</th>
       <th scope="col">CP</th>
       <th scope="col">Email</th>
+      <th scope="col">Modificar</th>
     </tr>
   </thead>
   {{#each socios}} 
   <tbody>
     <tr> 
-      <th scope="row"></th>
+      <th scope="row">{{#masuno @index}}</th>{{/masuno}}
       <td>{{apellidoRegistro}}</td>
       <td>{{nombreRegistro}}</td>
       <td>{{calleRegistro}}</td>
@@ -26,6 +27,10 @@
       <td>{{estadoRegistro}}</td>
       <td>{{cpRegistro}}</td>
       <td>{{emailRegistro}}</td>
+      <td>
+        <button type="button" class="btn btn-outline-success">Editar</button>
+        <button type="button" class="btn btn-outline-danger">Eliminar</button>
+      </td>
     </tr>
     {{/each}}
   </tbody>

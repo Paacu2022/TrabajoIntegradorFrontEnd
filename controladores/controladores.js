@@ -1,6 +1,7 @@
 const transport= require("../configuraciones/nodemailer")
 const securepass=require("../helpers/bcrypt")
-const User= require("../Esquemas/esquemaUsuarios")
+const User= require("../Esquemas/esquemaUsuarios");
+const Usuarios = require("../Esquemas/esquemaUsuarios");
 
 
 /*MOSTRAMOS EL FORMULARIO DE CONTACTO*/
@@ -178,6 +179,7 @@ function pedirUsuarios (req, res){
           res.send (err)
         } else{
           res.render("usuarios", {socios, titular:req.app.locals.titular , usuario: req.session.user})
+          
         }
       }).lean()
 

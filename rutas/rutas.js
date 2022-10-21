@@ -24,4 +24,7 @@ router.get("/bienvenida", autentificacion, users.bienvenida)
 router.post("/nuevaContrase",validacionContrase, users.nuevaContrase)
 
 
+router.get("/pedirUsuarios", users.pedirUsuarios)
+
+
 module.exports=router

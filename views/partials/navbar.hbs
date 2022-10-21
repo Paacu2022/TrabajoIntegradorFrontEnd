@@ -31,9 +31,15 @@
           </ul>{{/if}}
            
         </li>
+        {{#unless titular}}
         <li class="nav-item">
           <a class="nav-link" href="contacto">Contactenos</a>
-        </li>
+        </li>{{/unless}}
+      {{#if titular}}
+      <li class="nav-item">
+          <a  class="btn btn-primary" href="/pedirUsuarios"> Usuarios </a>
+        </li>{{/if}}
+      
       </ul>
     </div>
     </div>

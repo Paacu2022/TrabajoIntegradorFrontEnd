@@ -75,9 +75,16 @@ async function envioFormulario (req,res){
           apellido: usuario[0].apellidoRegistro,
        
         }
+        
+        if (usuario[0].emailRegistro=== "paacu21@hotmail.com"){
+          req.session.user= usr
+          const titular=true
+          res.render ("bienvenida", {titular, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
 
+        }else{
         req.session.user= usr
         res.render ("bienvenida", {usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
+        }
 
       } else return res.render ("login", {mensaje:"Usuario o contraseña incorrecta"})
     }
@@ -85,6 +92,7 @@ async function envioFormulario (req,res){
     //cuando nos deslogueamos//
     function logout (req, res){
       req.session.destroy()
+      req.app.locals.titular=false
       res.redirect("/")
     }
 //cuando solicitamos la modificacion de datos personales//
@@ -129,7 +137,7 @@ async function envioFormulario (req,res){
     function bienvenida (req, res){
       res.render("bienvenida", {usuario: `${req.session.user.nombre} ${req.session.user.apellido}` })
     }
-    
+
 //cuando vamos a modificar la contraseña y validamos que la contraseña actual coincida//
    async  function nuevaContrase (req, res, next){
     const datosUsu = await User.findById(req.session.user.id).lean()
@@ -163,7 +171,18 @@ async function envioFormulario (req,res){
   
 
 
-      
+function pedirUsuarios (req, res){
+  req.app.locals.titular=true
+      User.find({}, (err, socios)=>{
+        if (err){
+          res.send (err)
+        } else{
+          res.render("usuarios", {socios, titular:req.app.locals.titular , usuario: req.session.user})
+        }
+      }).lean()
+
+
+     } 
     
 
 
@@ -175,4 +194,4 @@ async function envioFormulario (req,res){
 
 
 
-module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, navbar, modiDatosPersonales, modiUsuContrase, bienvenida, nuevaContrase}
+module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, navbar, modiDatosPersonales, modiUsuContrase, bienvenida, nuevaContrase, pedirUsuarios}

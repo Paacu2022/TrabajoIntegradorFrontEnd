@@ -28,7 +28,7 @@ app.use( session ({
 
 app.use(express.static("public"))
 
-
+ app.locals.titular
 
 app.engine (".hbs", hbs.engine ({ extname: "hbs" }))
 app.set("view engine", "hbs")
@@ -36,7 +36,7 @@ app.set ("views", "./views")
 
 
 app.get("/", (req, res)=>{
-    res.render("home", {usuario: req.session.user})
+    res.render("home",{usuario: req.session.user, titular: req.app.locals.titular })
 })
 
 app.use("/", rutas)

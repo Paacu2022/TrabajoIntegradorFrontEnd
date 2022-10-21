@@ -1,0 +1,35 @@
+
+<table class="table table-hover" tabindex="1">
+       
+  <thead>
+    <tr class="table-dark">
+      <th scope="col">ID</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Direccion</th>
+      <th scope="col">Altura</th>
+      <th scope="col">Ciudad</th>
+      <th scope="col">Estado</th>
+      <th scope="col">CP</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  {{#each socios}} 
+  <tbody>
+    <tr> 
+      <th scope="row"></th>
+      <td>{{apellidoRegistro}}</td>
+      <td>{{nombreRegistro}}</td>
+      <td>{{calleRegistro}}</td>
+      <td>{{alturaRegistro}}</td>
+      <td>{{ciudadRegistro}}</td>
+      <td>{{estadoRegistro}}</td>
+      <td>{{cpRegistro}}</td>
+      <td>{{emailRegistro}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+
+

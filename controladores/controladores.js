@@ -39,7 +39,7 @@ async function envioFormulario (req,res){
 
     /*MOSTRAMOS EL FORMULARIO DE REGISTRACION*/
     function registracion (req,res) {
-      res.render("registracion", )
+      res.render("registracion", {usuario: req.session.user})
     }
 
     /*ENVIAMOS EL FORMULARIO DE REGISTRACION*/
@@ -52,9 +52,20 @@ async function envioFormulario (req,res){
       
       nuevoUsuario.save((err)=>{
         if (!err){
+          if (req.app.locals.titular){
+            req.app.locals.titular=true
+            User.find({}, (err, socios)=>{
+              if (err){
+                res.send (err)
+              } else{
+                res.render("usuarios", {socios, titular:req.app.locals.titular , usuario: req.session.user})
+                
+              }
+            }).lean()
+          }else{
           req.session.user= `${nombreRegistro} ${apellidoRegistro}`
           res.render("bienvenida", {usuario: `${nuevoUsuario.nombreRegistro} ${nuevoUsuario.apellidoRegistro}`})
-  
+          }
         }else {
           console.log(err);
           const errorEnMongo=true

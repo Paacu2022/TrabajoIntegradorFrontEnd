@@ -181,7 +181,11 @@
 
     <div class="d-flex justify-content-between ">
         <button class="btn btn-success" type="submit">Registrarse</button>
-        <a type="button" class="btn btn-warning" href="/">Cancelar</a>
+  {{#unless titular}}
+        <a type="button" class="btn btn-warning" href="/">Cancelar</a>{{/unless}}
+{{#if titular}}
+        <a type="button" class="btn btn-warning" href="/pedirUsuarios">Cancelar</a>{{/if}}
+
       </div>
   
 

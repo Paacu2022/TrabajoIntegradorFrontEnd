@@ -6,8 +6,8 @@
   <thead>
     <tr class="table-dark">
       <th scope="col">Nº</th>
-      <th scope="col">Apellido</th>
       <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
       <th scope="col">Direccion</th>
       <th scope="col">Altura</th>
       <th scope="col">Ciudad</th>
@@ -21,8 +21,8 @@
   <tbody>
     <tr> 
       <th scope="row">{{#masuno @index}}</th>{{/masuno}}
-      <td>{{apellidoRegistro}}</td>
       <td>{{nombreRegistro}}</td>
+      <td>{{apellidoRegistro}}</td>
       <td>{{calleRegistro}}</td>
       <td>{{alturaRegistro}}</td>
       <td>{{ciudadRegistro}}</td>
@@ -30,7 +30,7 @@
       <td>{{cpRegistro}}</td>
       <td>{{emailRegistro}}</td>
       <td>
-        <button type="button" class="btn btn-outline-success">Editar</button>
+        <a href="/modi/{{_id}}" class="btn btn-outline-success">Editar</a>
         <button type="button" class="btn btn-outline-danger">Eliminar</button>
       </td>
     </tr>

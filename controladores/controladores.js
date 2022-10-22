@@ -39,6 +39,7 @@ async function envioFormulario (req,res){
 
     /*MOSTRAMOS EL FORMULARIO DE REGISTRACION*/
     function registracion (req,res) {
+     
       res.render("registracion", {usuario: req.session.user})
     }
 
@@ -53,12 +54,12 @@ async function envioFormulario (req,res){
       nuevoUsuario.save((err)=>{
         if (!err){
           if (req.app.locals.titular){
-            req.app.locals.titular=true
+           
             User.find({}, (err, socios)=>{
               if (err){
                 res.send (err)
               } else{
-                res.render("usuarios", {socios, titular:req.app.locals.titular , usuario: req.session.user})
+                res.render("usuarios", {socios, usuario: req.session.user})
                 
               }
             }).lean()
@@ -90,8 +91,8 @@ async function envioFormulario (req,res){
         
         if (usuario[0].emailRegistro=== "paacu21@hotmail.com"){
           req.session.user= usr
-          const titular=true
-          res.render ("bienvenida", {titular, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
+          req.app.locals.titular=true
+          res.render ("bienvenida", {titular: req.app.locals.titular, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
 
         }else{
         req.session.user= usr
@@ -105,6 +106,7 @@ async function envioFormulario (req,res){
     function logout (req, res){
       req.session.destroy()
       req.app.locals.titular=false
+      req.app.locals.modi=false
       res.redirect("/")
     }
 //cuando solicitamos la modificacion de datos personales//
@@ -138,7 +140,7 @@ async function envioFormulario (req,res){
 
 //cuando activamos el navbar de modificacion de datos//
     function navbar (req, res){
-      const modi=true
+      req.app.locals.modi=true
       res.render ("bienvenida", {modi, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
     }
 //cuando pedimos el formulario de modificacion de contraseña//
@@ -193,10 +195,33 @@ function pedirUsuarios (req, res){
           
         }
       }).lean()
-
-
-     } 
+} 
     
+    async function modiId (req, res){
+      const user = await User.findById(req.params._id).lean()
+     req.app.locals.id = req.params._id
+    res.render ("modiXTitular", {user, usuario: req.session.user} )
+    }
+      
+  
+    async function envioModificacionTitular (req, res){
+      
+      try{
+        await User.findByIdAndUpdate(req.app.locals.id, {nombreRegistro: req.body.nombreRegistro, apellidoRegistro: req.body.apellidoRegistro, calleRegistro: req.body.calleRegistro, alturaRegistro: req.body.alturaRegistro, ciudadRegistro: req.body.ciudadRegistro, estadoRegistro: req.body.estadoRegistro, cpRegistro: req.body.cpRegistro})
+        User.find({}, (err, socios)=>{
+          if (err){
+            res.send (err)
+          } else{
+            res.render("usuarios", {socios, usuario: req.session.user})
+            
+          }
+        }).lean()
+        
+      } catch (err){
+        res.render ("noAutorizado")
+      }
+    }
+     
 
 
 
@@ -207,4 +232,4 @@ function pedirUsuarios (req, res){
 
 
 
-module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, navbar, modiDatosPersonales, modiUsuContrase, bienvenida, nuevaContrase, pedirUsuarios}
+module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, navbar, modiDatosPersonales, modiUsuContrase, bienvenida, nuevaContrase, pedirUsuarios, modiId, envioModificacionTitular}

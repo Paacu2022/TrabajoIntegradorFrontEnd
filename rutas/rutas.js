@@ -21,10 +21,10 @@ router.get("/eliminarCuenta", autentificacion, users.eliminarCuenta)
 router.get("/navbarmodi", autentificacion, users.navbar)
 router.get("/modiUsuContrase",autentificacion, users.modiUsuContrase)
 router.get("/bienvenida", autentificacion, users.bienvenida)
-router.post("/nuevaContrase",validacionContrase, users.nuevaContrase)
+router.post("/nuevaContrase",autentificacion, validacionContrase, users.nuevaContrase)
+router.get("/pedirUsuarios",autentificacion, users.pedirUsuarios)
 
-
-router.get("/pedirUsuarios", users.pedirUsuarios)
-
+router.get("/modi/:_id",autentificacion, users.modiId)
+router.post("/envioModificacionTitular",autentificacion, users.envioModificacionTitular)
 
 module.exports=router

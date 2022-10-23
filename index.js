@@ -30,7 +30,7 @@ app.use(express.static("public"))
 
  app.locals.titular
  app.locals.id
- app.locals.modi
+ app.locals.usuario
 
 app.engine (".hbs", hbs.engine ({ extname: "hbs" }))
 app.set("view engine", "hbs")

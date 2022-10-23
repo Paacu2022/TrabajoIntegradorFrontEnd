@@ -40,7 +40,7 @@ async function envioFormulario (req,res){
     /*MOSTRAMOS EL FORMULARIO DE REGISTRACION*/
     function registracion (req,res) {
      
-      res.render("registracion", {usuario: req.session.user})
+      res.render("registracion", {usuario: req.app.locals.usuario})
     }
 
     /*ENVIAMOS EL FORMULARIO DE REGISTRACION*/
@@ -92,6 +92,7 @@ async function envioFormulario (req,res){
         if (usuario[0].emailRegistro=== "paacu21@hotmail.com"){
           req.session.user= usr
           req.app.locals.titular=true
+          req.app.locals.usuario=true
           res.render ("bienvenida", {titular: req.app.locals.titular, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
 
         }else{
@@ -107,6 +108,7 @@ async function envioFormulario (req,res){
       req.session.destroy()
       req.app.locals.titular=false
       req.app.locals.modi=false
+      req.app.locals.usuario=false
       res.redirect("/")
     }
 //cuando solicitamos la modificacion de datos personales//
@@ -116,9 +118,10 @@ async function envioFormulario (req,res){
     }
     
     async function envioModificacion (req, res){
+     
       try{
         await User.findByIdAndUpdate(req.session.user.id, {nombreRegistro: req.body.nombreRegistro, apellidoRegistro: req.body.apellidoRegistro, calleRegistro: req.body.calleRegistro, alturaRegistro: req.body.alturaRegistro, ciudadRegistro: req.body.ciudadRegistro, estadoRegistro: req.body.estadoRegistro, cpRegistro: req.body.cpRegistro })
-        const modi= true
+        modi= true
         res.render ("modiDatosPersonales", {modi, usuario: req.session.user})
       } catch (err){
         res.render ("noAutorizado")
@@ -140,12 +143,13 @@ async function envioFormulario (req,res){
 
 //cuando activamos el navbar de modificacion de datos//
     function navbar (req, res){
-      req.app.locals.modi=true
+      modi= true
       res.render ("bienvenida", {modi, usuario: `${req.session.user.nombre} ${req.session.user.apellido}`})
     }
 //cuando pedimos el formulario de modificacion de contraseña//
     function modiUsuContrase (req, res){
-      res.render("modiUsuContraseña", {usuario: req.session.user})
+      modi=true
+      res.render("modiUsuContraseña", {modi,usuario: req.session.user})
     }
 
     function bienvenida (req, res){
@@ -168,9 +172,11 @@ async function envioFormulario (req,res){
         async function modicontrase (){
           try{
           await User.findByIdAndUpdate(req.session.user.id, {contraseñaRegistro: encriptada })
-          res.render ("modiUsuContraseña", {modificada,  usuario: req.session.user}) 
+          modificada=true
+          modi=true
+          res.render ("modiUsuContraseña", {modificada,modi,  usuario: req.session.user}) 
           } catch (err){
-          res.send ("noAutorizado")
+          res.render ("noAutorizado")
           } }
           modicontrase ()                         }
           encriptar()

@@ -10,7 +10,8 @@ const rutas=require("./rutas/rutas")
 const session= require("express-session")
 
 const handle= create ({ helpers: require ("./helpers/filtro"),
-                        helpers: require("./helpers/masuno")})
+                        helpers: require("./helpers/masuno")
+                        })
 
 
 app.listen(PORT, (err)=>{

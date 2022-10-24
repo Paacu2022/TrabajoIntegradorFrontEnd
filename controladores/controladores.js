@@ -190,7 +190,7 @@ async function envioFormulario (req,res){
     }
   
 
-
+//pedir todos los registros de usuarios//
 function pedirUsuarios (req, res){
   req.app.locals.titular=true
       User.find({}, (err, socios)=>{
@@ -202,16 +202,15 @@ function pedirUsuarios (req, res){
         }
       }).lean()
 } 
-    
+    //Cuando el titular pone editar en un registro//
     async function modiId (req, res){
       const user = await User.findById(req.params._id).lean()
      req.app.locals.id = req.params._id
     res.render ("modiXTitular", {user, usuario: req.session.user} )
     }
       
-  
+  //si el titular quiere modificar un registro de usuario//
     async function envioModificacionTitular (req, res){
-      
       try{
         await User.findByIdAndUpdate(req.app.locals.id, {nombreRegistro: req.body.nombreRegistro, apellidoRegistro: req.body.apellidoRegistro, calleRegistro: req.body.calleRegistro, alturaRegistro: req.body.alturaRegistro, ciudadRegistro: req.body.ciudadRegistro, estadoRegistro: req.body.estadoRegistro, cpRegistro: req.body.cpRegistro})
         User.find({}, (err, socios)=>{
@@ -228,8 +227,25 @@ function pedirUsuarios (req, res){
       }
     }
      
-
-
+//Si el titular quiere eliminar un registro de usuario//
+    async function eliminarTitular (req, res){
+      try{
+        await User.findByIdAndDelete(req.params._id)
+        User.find({}, (err, socios)=>{
+          if (err){
+            res.send (err)
+          } else{
+            eliminar=true
+            res.render("usuarios", {eliminar, socios, usuario: req.session.user})
+            
+          }
+        }).lean()
+  
+      }  catch (err){
+        res.send (err)
+      }
+      }
+    
 
 
 
@@ -238,4 +254,4 @@ function pedirUsuarios (req, res){
 
 
 
-module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, navbar, modiDatosPersonales, modiUsuContrase, bienvenida, nuevaContrase, pedirUsuarios, modiId, envioModificacionTitular}
+module.exports={envioFormulario, formulario, login, registracion, envioRegistracion, envioLogin, logout, envioModificacion, eliminarCuenta, navbar, modiDatosPersonales, modiUsuContrase, bienvenida, nuevaContrase, pedirUsuarios, modiId, envioModificacionTitular, eliminarTitular}

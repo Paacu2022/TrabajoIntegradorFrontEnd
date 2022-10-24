@@ -30,8 +30,8 @@
       <td>{{cpRegistro}}</td>
       <td>{{emailRegistro}}</td>
       <td>
-        <a href="/modi/{{_id}}" class="btn btn-outline-success">Editar</a>
-        <button type="button" class="btn btn-outline-danger">Eliminar</button>
+       <a href="/modi/{{_id}}" class="btn btn-outline-success">Editar</a>
+        <a href="/eliminarTitular/{{_id}}" class="btn btn-outline-danger">Eliminar</a>
       </td>
     </tr>
     {{/each}}
@@ -39,4 +39,15 @@
 </table>
 
 
-
+{{#if eliminar}}
+<script>
+Swal.fire({
+  title: 'Usuario eliminado',
+  text: 'La Cuenta ha sido eliminada definitivamente',
+  imageUrl: "https://brandvan.io/wp-content/uploads/2021/07/giphy.gif",
+  imageWidth: 400,
+  imageHeight: 200,
+  imageAlt: 'Usuario Eliminado',
+})
+</script>
+{{/if}}

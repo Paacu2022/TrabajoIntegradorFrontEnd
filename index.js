@@ -32,6 +32,7 @@ app.use(express.static("public"))
  app.locals.titular
  app.locals.id
  app.locals.usuario
+ app.locals.datosFormulario
 
 app.engine (".hbs", hbs.engine ({ extname: "hbs" }))
 app.set("view engine", "hbs")

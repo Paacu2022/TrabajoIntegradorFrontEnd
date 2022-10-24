@@ -70,7 +70,7 @@ async function envioFormulario (req,res){
         }else {
           console.log(err);
           const errorEnMongo=true
-          res. render ("registracion", {errorEnMongo})
+          res. render ("registracion", {datosFormulario:req.app.locals.datosFormulario, errorEnMongo})
 
         }
       })
@@ -86,6 +86,9 @@ async function envioFormulario (req,res){
           id: usuario[0]._id,
           nombre: usuario[0].nombreRegistro,
           apellido: usuario[0].apellidoRegistro,
+          createdAt: usuario[0].createdAt,
+          updatedAt: usuario[0].updatedAt,
+          email:usuario[0].emailRegistro
        
         }
         
@@ -120,9 +123,9 @@ async function envioFormulario (req,res){
     async function envioModificacion (req, res){
      
       try{
-        await User.findByIdAndUpdate(req.session.user.id, {nombreRegistro: req.body.nombreRegistro, apellidoRegistro: req.body.apellidoRegistro, calleRegistro: req.body.calleRegistro, alturaRegistro: req.body.alturaRegistro, ciudadRegistro: req.body.ciudadRegistro, estadoRegistro: req.body.estadoRegistro, cpRegistro: req.body.cpRegistro })
+        const user = await User.findByIdAndUpdate(req.session.user.id, {nombreRegistro: req.body.nombreRegistro, apellidoRegistro: req.body.apellidoRegistro, calleRegistro: req.body.calleRegistro, alturaRegistro: req.body.alturaRegistro, ciudadRegistro: req.body.ciudadRegistro, estadoRegistro: req.body.estadoRegistro, cpRegistro: req.body.cpRegistro })
         modi= true
-        res.render ("modiDatosPersonales", {modi, usuario: req.session.user})
+        res.render ("modiDatosPersonales", {modi, usuario: req.session.user, user})
       } catch (err){
         res.render ("noAutorizado")
       }

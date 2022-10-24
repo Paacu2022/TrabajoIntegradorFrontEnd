@@ -79,11 +79,11 @@ const validacionRegistro=[
     (req, res, next)=>{
         const errors= validationResult(req)
     if (!errors.isEmpty()){
-      const datosFormulario=req.body
-      errores=errors.array()
+      req.app.locals.datosFormulario=req.body
+       const errores=errors.array()
 
       
-      res.render ("registracion", {errores, datosFormulario})
+      res.render ("registracion", {errores, datosFormulario:req.app.locals.datosFormulario })
       
   }
     else return next() 

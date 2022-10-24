@@ -1,53 +1,118 @@
 <form action="/envioModificacionTitular" method="post" >
-      <div class="modal-body">
+      
         <div class="row">
   <div class="col-6">
-<div class="input-group mb-3">
+<div class="input-group">
   <img src="/imagenes/iconos/nombre.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nombreRegistro" autofocus value="{{user.nombreRegistro}}">
+  <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="nombreRegistro" autofocus value="{{user.nombreRegistro}}{{datosFormulario.nombreRegistro}}" >
 </div></div>
 <div class="col-6">
-<div class="input-group mb-3">
+<div class="input-group ">
    <img src="/imagenes/iconos/apellido.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Apellido" aria-label="Nombre" id="nombreRegistro" name="apellidoRegistro" value="{{user.apellidoRegistro}}">
+  <input type="text" class="form-control" placeholder="Apellido" aria-label="Nombre" id="nombreRegistro" name="apellidoRegistro" value="{{user.apellidoRegistro}}{{datosFormulario.apellidoRegistro}}">
 </div>
   </div>
   </div>
 
 <div class="row">
+  <div class="col-6">
+<div class="badge input-group text-uppercase text-danger mb-2 ">
+  {{#filtro errores "nombreRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+
+<div class="col-6">
+<div class="badge input-group text-uppercase text-danger mb-2 ">
+  {{#filtro errores "apellidoRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+</div>
+
+
+
+<div class="row">
   <div class="col-9">
-    <div class="input-group mb-3">
+    <div class="input-group ">
 <img src="/imagenes/iconos/calle.png"  width="45" height="45">
-<input type="text" class="form-control col-form-label" placeholder="Direccion: Calle" aria-label="calle" name="calleRegistro" value="{{user.calleRegistro}}">
+<input type="text" class="form-control col-form-label" placeholder="Direccion: Calle" aria-label="calle" name="calleRegistro" value="{{user.calleRegistro}}{{datosFormulario.calleRegistro}}">
     </div></div>
     <div class="col-3">
-      <div class="input-group mb-3">
+      <div class="input-group">
         <img src="/imagenes/iconos/numero.png"  width="45" height="45">
-        <input type="text" class="form-control col-form-label" placeholder="Altura" aria-label="altura" name="alturaRegistro" value="{{user.alturaRegistro}}">
+        <input type="text" class="form-control col-form-label" placeholder="Altura" aria-label="altura" name="alturaRegistro" value="{{user.alturaRegistro}}{{datosFormulario.alturaRegistro}}">
       </div>
     </div>
     </div>
 
+    <div class="row">
+  <div class="col-9">
+<div class="badge input-group text-uppercase text-danger mb-2 ">
+  {{#filtro errores "calleRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+
+<div class="col-3">
+<div class="badge input-group text-uppercase text-danger mb-2 ">
+  {{#filtro errores "alturaRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+</div>
+
 <div class="row">
   <div class="col-5">
-    <div class="input-group mb-5">
+    <div class="input-group">
 <img src="/imagenes/iconos/location.png"  width="45" height="45">
-<input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" name="ciudadRegistro" value="{{user.ciudadRegistro}}">
+<input type="text" class="form-control" placeholder="Ciudad" aria-label="Ciudad" name="ciudadRegistro" value="{{user.ciudadRegistro}}{{datosFormulario.ciudadRegistro}}">
     </div></div>
     <div class="col-5">
-      <div class="input-group mb-5">
+      <div class="input-group ">
         <img src="/imagenes/iconos/pais.png"  width="45" height="45">
-  <input type="text" class="form-control" placeholder="Estado" aria-label="Estado" name="estadoRegistro" value="{{user.estadoRegistro}}">
+  <input type="text" class="form-control" placeholder="Estado" aria-label="Estado" name="estadoRegistro" value="{{user.estadoRegistro}}{{datosFormulario.estadoRegistro}}">
       </div>
     </div>
     <div class="col-2">
-      <div class="input-group mb-5">
+      <div class="input-group ">
         <img src="/imagenes/iconos/postal.png"  width="45" height="45">
-     <input type="text" class="form-control" placeholder="CP" aria-label="Código postal" name="cpRegistro" value="{{user.cpRegistro}}">
+     <input type="text" class="form-control" placeholder="CP" aria-label="Código postal" name="cpRegistro" value="{{user.cpRegistro}}{{datosFormulario.cpRegistro}}">
       </div>
     </div>
     </div>
-      </div>
+      
+      <div class="row">
+  <div class="col-5">
+<div class="badge input-group text-uppercase text-danger mb-2">
+  {{#filtro errores "ciudadRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+
+<div class="col-5">
+<div class="badge input-group text-uppercase text-danger mb-2">
+  {{#filtro errores "estadoRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+
+<div class="col-2">
+<div class="badge input-group text-uppercase text-danger mb-2">
+  {{#filtro errores "cpRegistro"}} 
+  <ul> 
+    <li>{{this}}</li>
+  </ul>{{/filtro}}
+</div></div>
+</div>
+
+
       <div class="modal-footer d-flex justify-content-between">
         <button type="submit" role="link"  class="btn btn-primary">Enviar Modificacion </button>
               

@@ -1,7 +1,9 @@
-const transport= require("../configuraciones/nodemailer")
+const nodemailer= require ("nodemailer")
 const securepass=require("../helpers/bcrypt")
 const User= require("../Esquemas/esquemaUsuarios");
 const Usuarios = require("../Esquemas/esquemaUsuarios");
+const transport= require ("../configuraciones/nodemailer")
+
 
 
 /*MOSTRAMOS EL FORMULARIO DE CONTACTO*/
@@ -11,8 +13,7 @@ function formulario (req,res) {
 
 /*ENVIAMOS EL MAIL DEL FORMULARIO DE CONTACTO*/
 async function envioFormulario (req,res){
-
-    const {nombre, apellido, email, whatsapp, mensaje}= req.body;
+  const {nombre, apellido, email, whatsapp, mensaje}= req.body;
         const emailmensaje ={
            to:"paacu21@hotmail.com",
            from: email,
@@ -30,7 +31,9 @@ async function envioFormulario (req,res){
       }
      
     res.render("contacto", {confirmacion, usuario: req.session.user})
-    }
+
+  
+}
 
     /*MOSTRAMOS EL INGRESO AL LOGIN*/
     function login (req,res) {
